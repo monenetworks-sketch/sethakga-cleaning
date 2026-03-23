@@ -1,5 +1,5 @@
 /* ============================================================
-   SETHAKGA CLEANING COMPANY — SHARED STYLES
+   THE SETHAKGA GROUP — SHARED STYLES
    ============================================================ */
 
 /* ============================================================
@@ -720,6 +720,104 @@ img { max-width: 100%; display: block; }
 .services-header { text-align: center; margin-bottom: 60px; }
 .services-header .section-subtitle { margin: 0 auto; }
 
+/* Service Group */
+.service-group {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+}
+
+.service-group-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 2px solid var(--grey-light);
+}
+
+.fairy-mascot {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--pink-pale) 0%, #fce4ec 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(196,30,107,0.15);
+}
+
+.fairy-mascot--braid {
+  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+  box-shadow: 0 4px 16px rgba(123,31,162,0.15);
+}
+
+.fairy-emoji {
+  font-size: 2.2rem;
+}
+
+.fairy-tool {
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  background: var(--white);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.service-group-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.service-group-title span {
+  color: var(--pink);
+}
+
+.fairy-mascot--braid + div .service-group-title span {
+  color: #7B1FA2;
+}
+
+.service-group-sub {
+  font-size: 0.9rem;
+  color: var(--grey-mid);
+}
+
+/* Hair USP highlights strip */
+.hair-usps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 20px 0 8px;
+  padding: 16px 20px;
+  background: #F3E5F5;
+  border-radius: var(--radius);
+  border-left: 4px solid #7B1FA2;
+}
+.hair-usp {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #4A148C;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hair-usp i {
+  color: #7B1FA2;
+  font-size: 0.85rem;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1418,65 +1516,45 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================================
-   TIMELINE
+   JOURNEY CARDS (replaces timeline)
 ============================================================ */
-.timeline {
-  position: relative;
-  padding: 40px 0;
-  max-width: 700px;
-  margin: 0 auto;
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  width: 3px;
-  background: var(--pink-pale);
-  transform: translateX(-50%);
-}
-
-.timeline-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.timeline-item:nth-child(even) {
-  flex-direction: row-reverse;
-  text-align: right;
-}
-
-.timeline-dot {
-  width: 16px; height: 16px;
-  background: var(--pink);
-  border-radius: 50%;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 0 0 4px var(--pink-pale);
-}
-
-.timeline-content {
-  flex: 1;
+.journey-card {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 20px 24px;
+  padding: 28px 24px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  position: relative;
+  border-top: 3px solid var(--pink);
 }
 
-.timeline-content h4 {
-  font-size: 0.95rem;
+.journey-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  background: var(--pink);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.journey-card h4 {
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--pink);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
-.timeline-content p {
-  font-size: 0.88rem;
+.journey-card p {
+  font-size: 0.85rem;
   color: var(--grey-mid);
   line-height: 1.6;
 }
@@ -1715,12 +1793,7 @@ footer {
 
   .pricing-table-wrap { overflow-x: auto; }
 
-  .timeline::before { left: 20px; }
-  .timeline-item,
-  .timeline-item:nth-child(even) {
-    flex-direction: row;
-    text-align: left;
-  }
+  .journey-grid { grid-template-columns: repeat(2, 1fr); }
 
   /* Prevent horizontal overflow on tablets */
   .services-grid { grid-template-columns: 1fr 1fr; }
@@ -1728,6 +1801,8 @@ footer {
   .why-grid { grid-template-columns: 1fr 1fr; }
   .pricing-grid { grid-template-columns: 1fr 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
+
+  .service-group { padding: 36px 28px; }
 }
 
 @media (max-width: 640px) {
@@ -1745,6 +1820,16 @@ footer {
   .services-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
+
+  /* Service groups mobile */
+  .service-group { padding: 24px 18px; }
+  .service-group-header { flex-direction: column; text-align: center; gap: 16px; }
+  .fairy-mascot { width: 64px; height: 64px; }
+  .fairy-emoji { font-size: 1.8rem; }
+  .fairy-tool { width: 26px; height: 26px; font-size: 1rem; }
+  .service-group-title { font-size: 1.2rem; }
+  .hair-usps { gap: 8px 16px; padding: 12px 14px; font-size: 0.82rem; }
+  .hair-usp { font-size: 0.82rem; }
 
   /* Lock hero to prevent shifting */
   .hero-grid { grid-template-columns: 1fr; }
@@ -1794,14 +1879,11 @@ footer {
   /* Why cards — prevent width shift */
   .why-card { padding: 28px 20px; }
 
-  /* Timeline — stable mobile layout */
-  .timeline { padding: 20px 0; }
-  .timeline::before { left: 8px; }
-  .timeline-item { gap: 16px; }
-  .timeline-dot { width: 12px; height: 12px; }
-  .timeline-content { padding: 16px; }
-  .timeline-content h4 { font-size: 0.88rem; }
-  .timeline-content p { font-size: 0.82rem; }
+  /* Journey cards — mobile */
+  .journey-grid { grid-template-columns: 1fr; }
+  .journey-card { padding: 20px 18px; }
+  .journey-card h4 { font-size: 0.85rem; }
+  .journey-card p { font-size: 0.8rem; }
 
   /* WhatsApp + back-to-top — ensure no overlap */
   .whatsapp-float { width: 48px; height: 48px; font-size: 1.3rem; bottom: 20px; left: 16px; }
