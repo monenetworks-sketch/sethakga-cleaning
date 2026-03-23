@@ -208,9 +208,21 @@
                 <input type="email" id="email" name="email" placeholder="your@email.com" required />
               </div>
               <div class="form-group">
-                <label for="phone">Phone / WhatsApp</label>
+                <label for="phone">Phone (Direct Calls)</label>
                 <input type="tel" id="phone" name="phone" placeholder="072 000 0000" required />
               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="sameNumber" />
+                <span>WhatsApp number is the same as my call number</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp Number</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="072 000 0000" required />
             </div>
 
             <div class="form-group">
@@ -387,6 +399,26 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+    /* ---- Same Number Checkbox ---- */
+    const phoneInput = document.getElementById('phone');
+    const whatsappInput = document.getElementById('whatsapp');
+    const sameNumberCb = document.getElementById('sameNumber');
+
+    sameNumberCb.addEventListener('change', () => {
+      if (sameNumberCb.checked) {
+        whatsappInput.value = phoneInput.value;
+        whatsappInput.readOnly = true;
+      } else {
+        whatsappInput.readOnly = false;
+      }
+    });
+
+    phoneInput.addEventListener('input', () => {
+      if (sameNumberCb.checked) {
+        whatsappInput.value = phoneInput.value;
+      }
+    });
+
     /* ---- Form Handling ---- */
     const bookingForm = document.getElementById('bookingForm');
     const formSuccess = document.getElementById('formSuccess');
@@ -397,15 +429,18 @@
       const fname = document.getElementById('fname').value.trim();
       const lname = document.getElementById('lname').value.trim();
       const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
+      const phone = phoneInput.value.trim();
+      const whatsapp = whatsappInput.value.trim();
       const service = document.getElementById('service').value;
 
-      if (!fname || !lname || !email || !phone || !service) {
+      if (!fname || !lname || !email || !phone || !whatsapp || !service) {
         return;
       }
 
       formSuccess.classList.add('show');
       bookingForm.reset();
+      sameNumberCb.checked = false;
+      whatsappInput.readOnly = false;
 
       setTimeout(() => {
         formSuccess.classList.remove('show');
