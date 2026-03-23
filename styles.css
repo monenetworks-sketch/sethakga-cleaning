@@ -153,13 +153,15 @@ img { max-width: 100%; display: block; }
 .nav-logo .logo-icon {
   width: 44px;
   height: 44px;
-  background: var(--pink);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.1rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.nav-logo .logo-icon .logo-fairy {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .nav-logo .logo-text {
@@ -783,6 +785,14 @@ img { max-width: 100%; display: block; }
 .service-group-sub {
   font-size: 0.9rem;
   color: var(--grey-mid);
+}
+
+.service-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
 }
 
 /* Hair USP highlights strip */
@@ -1817,8 +1827,6 @@ footer {
   .service-group { padding: 24px 18px; }
   .service-group-header { flex-direction: column; text-align: center; gap: 16px; }
   .fairy-mascot { width: 64px; height: 64px; }
-  .fairy-emoji { font-size: 1.8rem; }
-  .fairy-tool { width: 26px; height: 26px; font-size: 1rem; }
   .service-group-title { font-size: 1.2rem; }
   .hair-usps { gap: 8px 16px; padding: 12px 14px; font-size: 0.82rem; }
   .hair-usp { font-size: 0.82rem; }
@@ -1867,6 +1875,9 @@ footer {
   .cta-section h2 { font-size: 1.4rem; }
   .cta-actions { flex-direction: column; align-items: center; }
   .cta-actions .btn { width: 100%; max-width: 300px; justify-content: center; }
+
+  .service-actions { flex-direction: column; align-items: center; }
+  .service-actions .btn { width: 100%; max-width: 300px; justify-content: center; }
 
   /* Why cards — prevent width shift */
   .why-card { padding: 28px 20px; }
