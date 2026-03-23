@@ -576,7 +576,7 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: center;
+  align-items: start;
 }
 
 .about-image-wrap {
@@ -630,20 +630,24 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
 }
 
+.about-awards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
 .about-badge-card {
-  position: absolute;
-  bottom: -24px;
-  right: -24px;
   background: var(--white);
-  border-radius: 16px;
-  padding: 16px 20px;
+  border-radius: 12px;
+  padding: 14px 18px;
   box-shadow: var(--shadow);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.about-badge-card .bc-icon { font-size: 2rem; }
+.about-badge-card .bc-icon { font-size: 1.8rem; }
 
 .about-badge-card .bc-text .bc-title {
   font-size: 0.85rem;
@@ -740,38 +744,25 @@ img { max-width: 100%; display: block; }
 .fairy-mascot {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--pink-pale) 0%, #fce4ec 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   flex-shrink: 0;
+  overflow: hidden;
+  background: var(--white);
   box-shadow: 0 4px 16px rgba(196,30,107,0.15);
 }
 
 .fairy-mascot--braid {
-  background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
   box-shadow: 0 4px 16px rgba(123,31,162,0.15);
 }
 
-.fairy-emoji {
-  font-size: 2.2rem;
-}
-
-.fairy-tool {
-  font-size: 1.2rem;
-  position: absolute;
-  bottom: -2px;
-  right: -4px;
-  background: var(--white);
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+.fairy-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .service-group-title {
@@ -1786,7 +1777,8 @@ footer {
   .hero-visual { display: none; }
 
   .about-image-wrap { max-width: 380px; margin: 0 auto; }
-  .about-badge-card { right: -10px; bottom: -10px; }
+  .about-visual-col { max-width: 380px; margin: 0 auto; }
+  .about-awards { align-items: center; }
 
   .contact-grid { gap: 40px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
