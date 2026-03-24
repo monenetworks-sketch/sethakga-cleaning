@@ -59,9 +59,9 @@
   </div>
 
   <!-- ==================== PAGE HERO ==================== -->
-  <section class="page-hero" style="background: linear-gradient(135deg, #C41E6B 0%, #E8417E 100%);">
+  <section class="page-hero page-hero--cleaning" style="background: linear-gradient(135deg, #C41E6B 0%, #E8417E 100%);">
     <div class="container">
-      <span class="section-tag section-tag--cleaning">🧹 Cleaning Division</span>
+      <span class="section-tag section-tag--cleaning"><i class="fas fa-broom"></i> Cleaning Division</span>
       <h1 class="page-hero-title">Sethakga <span>Cleaning</span></h1>
       <p class="page-hero-desc">
         Professional cleaning services for homes and businesses across Gauteng.
@@ -88,23 +88,68 @@
     </div>
   </div>
 
-  <!-- ==================== CLEANING SERVICES ==================== -->
-  <section id="services" style="padding: 100px 0; background: var(--white);">
+  <!-- ==================== PROPERTY TYPE SELECTOR ==================== -->
+  <section class="property-selector">
     <div class="container">
       <div class="section-header-branded">
-        <span class="section-tag section-tag--cleaning">What We Do</span>
-        <h2 class="section-title">Our <span>Cleaning Services</span></h2>
+        <span class="section-tag section-tag--cleaning">Get Started</span>
+        <h2 class="section-title">What Type of <span>Property</span> Do You Need Cleaned?</h2>
         <p class="section-subtitle">
-          From residential maintenance to commercial deep cleans — 
-          comprehensive cleaning solutions tailored to your needs.
+          Choose your property type to explore tailored cleaning solutions
         </p>
       </div>
 
-      <!-- Residential Cleaning -->
-      <h3 style="margin: 48px 0 24px; color: var(--dark); font-size: 1.3rem; font-weight: 700;">
-        <i class="fas fa-home" style="color: var(--pink); margin-right: 8px;"></i>
-        Residential Cleaning
-      </h3>
+      <div class="property-choice-grid">
+        <a href="#residential-services" class="property-choice-card" data-property="residential">
+          <div class="property-choice-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Residential</h3>
+          <p>Homes, apartments, and living spaces</p>
+          <ul class="property-choice-features">
+            <li><i class="fas fa-check"></i> Deep Cleaning</li>
+            <li><i class="fas fa-check"></i> Maid Services</li>
+            <li><i class="fas fa-check"></i> Carpet & Upholstery</li>
+            <li><i class="fas fa-check"></i> Pest Control</li>
+          </ul>
+          <span class="property-choice-cta">
+            Explore Residential <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+
+        <a href="#commercial-services" class="property-choice-card" data-property="commercial">
+          <div class="property-choice-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>Commercial</h3>
+          <p>Offices, retail spaces, and business properties</p>
+          <ul class="property-choice-features">
+            <li><i class="fas fa-check"></i> Office Cleaning</li>
+            <li><i class="fas fa-check"></i> Construction Cleanup</li>
+            <li><i class="fas fa-check"></i> Window Cleaning</li>
+            <li><i class="fas fa-check"></i> Industrial Cleaning</li>
+          </ul>
+          <span class="property-choice-cta">
+            Explore Commercial <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESIDENTIAL SERVICES ==================== -->
+  <section id="residential-services" class="services-section">
+    <div class="container">
+      <div class="section-header-branded">
+        <span class="section-tag section-tag--cleaning">
+          <i class="fas fa-home"></i> Residential
+        </span>
+        <h2 class="section-title">Home <span>Cleaning Services</span></h2>
+        <p class="section-subtitle">
+          Professional cleaning solutions for your home — from deep cleans to daily maintenance
+        </p>
+      </div>
+
       <div class="services-grid">
         <div class="service-card fade-up">
           <div class="service-icon"><i class="fas fa-house-chimney"></i></div>
@@ -158,11 +203,12 @@
         </div>
       </div>
 
-      <!-- Specialized Services -->
-      <h3 style="margin: 60px 0 24px; color: var(--dark); font-size: 1.3rem; font-weight: 700;">
-        <i class="fas fa-star" style="color: var(--pink); margin-right: 8px;"></i>
-        Specialized &amp; Add-On Services
-      </h3>
+      <!-- Specialized Add-Ons -->
+      <div class="subsection-header">
+        <h3><i class="fas fa-star"></i> Specialized Add-On Services</h3>
+        <p>Premium services available for residential properties</p>
+      </div>
+
       <div class="services-grid">
         <div class="service-card fade-up">
           <div class="service-icon"><i class="fas fa-rug"></i></div>
@@ -193,11 +239,118 @@
         </div>
       </div>
 
-      <!-- Commercial Services -->
-      <h3 style="margin: 60px 0 24px; color: var(--dark); font-size: 1.3rem; font-weight: 700;">
-        <i class="fas fa-building" style="color: var(--pink); margin-right: 8px;"></i>
-        Commercial &amp; Industrial Cleaning
-      </h3>
+      <!-- CTA for Residential -->
+      <div class="section-cta">
+        <a href="#residential-booking-form" class="btn btn-cleaning btn-large scroll-to-form">
+          <i class="fas fa-calendar-check"></i> Book Residential Cleaning
+        </a>
+        <a href="pricing.html" class="btn btn-outline-pink btn-large">
+          <i class="fas fa-tag"></i> View Pricing
+        </a>
+      </div>
+
+      <!-- Residential Booking Form -->
+      <div id="residential-booking-form" class="booking-form-section">
+        <div class="booking-form-header">
+          <h3><i class="fas fa-calendar-check"></i> Book Your Residential Cleaning</h3>
+          <p>Fill out the form below and we'll get back to you within 24 hours</p>
+        </div>
+
+        <form class="booking-form" id="residentialBookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-name">Full Name *</label>
+              <input type="text" id="res-name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="res-phone">Phone Number *</label>
+              <input type="tel" id="res-phone" name="phone" required placeholder="e.g. 072 924 9068">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-email">Email Address</label>
+              <input type="email" id="res-email" name="email" placeholder="your.email@example.com">
+            </div>
+            <div class="form-group">
+              <label for="res-location">Location / Suburb *</label>
+              <input type="text" id="res-location" name="location" required placeholder="e.g. Midrand">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-service">Service Type *</label>
+              <select id="res-service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="deep-cleaning">Deep Cleaning (All-Inclusive)</option>
+                <option value="maid-once-off">Maid Service - Once-Off</option>
+                <option value="maid-recurring">Maid Service - Recurring</option>
+                <option value="full-time">Full-Time Fairy (Live-In/Out)</option>
+                <option value="carpet">Carpet Cleaning</option>
+                <option value="upholstery">Upholstery Cleaning</option>
+                <option value="curtains">Curtain Cleaning</option>
+                <option value="pest-control">Pest Control</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="res-property-size">Property Type *</label>
+              <select id="res-property-size" name="property-size" required>
+                <option value="">Select property type</option>
+                <option value="apartment">Apartment / Flat</option>
+                <option value="townhouse">Townhouse</option>
+                <option value="house-small">House (1-2 Bedrooms)</option>
+                <option value="house-medium">House (3-4 Bedrooms)</option>
+                <option value="house-large">House (5+ Bedrooms)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-date">Preferred Date *</label>
+              <input type="date" id="res-date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="res-time">Preferred Time</label>
+              <select id="res-time" name="time">
+                <option value="">Select time</option>
+                <option value="8am-10am">8:00 AM - 10:00 AM</option>
+                <option value="10am-12pm">10:00 AM - 12:00 PM</option>
+                <option value="12pm-2pm">12:00 PM - 2:00 PM</option>
+                <option value="2pm-4pm">2:00 PM - 4:00 PM</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="res-notes">Additional Notes / Special Requirements</label>
+            <textarea id="res-notes" name="notes" rows="4" placeholder="Tell us about any specific needs, areas of focus, or special instructions..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-cleaning btn-large btn-block">
+            <i class="fas fa-paper-plane"></i> Submit Booking Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMMERCIAL SERVICES ==================== -->
+  <section id="commercial-services" class="services-section services-section--alt">
+    <div class="container">
+      <div class="section-header-branded">
+        <span class="section-tag section-tag--cleaning">
+          <i class="fas fa-building"></i> Commercial & Industrial
+        </span>
+        <h2 class="section-title">Business <span>Cleaning Solutions</span></h2>
+        <p class="section-subtitle">
+          Professional cleaning services for offices, retail spaces, and industrial facilities
+        </p>
+      </div>
+
       <div class="services-grid">
         <div class="service-card fade-up">
           <div class="service-icon"><i class="fas fa-briefcase"></i></div>
@@ -228,14 +381,121 @@
         </div>
       </div>
 
-      <!-- CTA -->
-      <div style="text-align: center; margin-top: 60px;">
-        <a href="pricing.html" class="btn btn-cleaning btn-large">
+      <!-- CTA for Commercial -->
+      <div class="section-cta">
+        <a href="#commercial-booking-form" class="btn btn-cleaning btn-large scroll-to-form">
+          <i class="fas fa-calendar-check"></i> Book Commercial Cleaning
+        </a>
+        <a href="pricing.html" class="btn btn-outline-pink btn-large">
           <i class="fas fa-tag"></i> View Pricing
         </a>
-        <a href="contact.html" class="btn btn-outline-pink btn-large" style="margin-left: 16px;">
-          <i class="fas fa-calendar-check"></i> Book Now
-        </a>
+      </div>
+
+      <!-- Commercial Booking Form -->
+      <div id="commercial-booking-form" class="booking-form-section">
+        <div class="booking-form-header">
+          <h3><i class="fas fa-calendar-check"></i> Book Your Commercial Cleaning</h3>
+          <p>Fill out the form below and we'll provide a custom quote within 24 hours</p>
+        </div>
+
+        <form class="booking-form" id="commercialBookingForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="com-company">Company / Business Name *</label>
+              <input type="text" id="com-company" name="company" required placeholder="Your business name">
+            </div>
+            <div class="form-group">
+              <label for="com-contact">Contact Person *</label>
+              <input type="text" id="com-contact" name="contact" required placeholder="Your name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="com-phone">Phone Number *</label>
+              <input type="tel" id="com-phone" name="phone" required placeholder="e.g. 010 634 5557">
+            </div>
+            <div class="form-group">
+              <label for="com-email">Email Address *</label>
+              <input type="email" id="com-email" name="email" required placeholder="business@example.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="com-location">Location / Suburb *</label>
+              <input type="text" id="com-location" name="location" required placeholder="e.g. Midrand, Sandton">
+            </div>
+            <div class="form-group">
+              <label for="com-property-type">Property Type *</label>
+              <select id="com-property-type" name="property-type" required>
+                <option value="">Select property type</option>
+                <option value="office-small">Office (Small - Under 500m²)</option>
+                <option value="office-medium">Office (Medium - 500-1000m²)</option>
+                <option value="office-large">Office (Large - Over 1000m²)</option>
+                <option value="retail">Retail Store / Shop</option>
+                <option value="warehouse">Warehouse</option>
+                <option value="factory">Factory / Manufacturing Facility</option>
+                <option value="construction">Construction Site</option>
+                <option value="other">Other Commercial</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="com-service">Service Type *</label>
+              <select id="com-service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="office-regular">Office Cleaning (Regular)</option>
+                <option value="office-deep">Office Deep Cleaning (Once-Off)</option>
+                <option value="construction">Pre/Post-Construction Cleanup</option>
+                <option value="window">Window Cleaning</option>
+                <option value="industrial">Industrial Cleaning</option>
+                <option value="carpet-commercial">Carpet & Upholstery</option>
+                <option value="pest-commercial">Pest Control</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="com-frequency">Cleaning Frequency</label>
+              <select id="com-frequency" name="frequency">
+                <option value="">Select frequency</option>
+                <option value="once-off">Once-Off</option>
+                <option value="weekly">Weekly</option>
+                <option value="bi-weekly">Bi-Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="daily">Daily</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="com-date">Preferred Start Date *</label>
+              <input type="date" id="com-date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="com-time">Preferred Time</label>
+              <select id="com-time" name="time">
+                <option value="">Select time</option>
+                <option value="after-hours">After Hours (6PM+)</option>
+                <option value="early-morning">Early Morning (6AM-8AM)</option>
+                <option value="business-hours">Business Hours (9AM-5PM)</option>
+                <option value="weekend">Weekend</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="com-notes">Project Details / Special Requirements</label>
+            <textarea id="com-notes" name="notes" rows="4" placeholder="Describe your cleaning needs, square footage, number of offices, specific areas requiring attention, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-cleaning btn-large btn-block">
+            <i class="fas fa-paper-plane"></i> Request Commercial Quote
+          </button>
+        </form>
       </div>
     </div>
   </section>

@@ -323,51 +323,6 @@
   </button>
 
   <!-- ==================== JAVASCRIPT ==================== -->
-  <script>
-    /* ---- Navbar scroll ---- */
-    const navbar = document.getElementById('navbar');
-    const backTop = document.getElementById('back-top');
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        navbar.classList.add('scrolled');
-        backTop.classList.add('visible');
-      } else {
-        navbar.classList.remove('scrolled');
-        backTop.classList.remove('visible');
-      }
-    });
-
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    /* ---- Hamburger menu ---- */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('active');
-      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-    });
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileNav.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    /* ---- Intersection Observer for fade-up ---- */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
