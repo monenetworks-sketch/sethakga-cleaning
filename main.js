@@ -652,3 +652,96 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize
   showStep(1);
 });
+
+/* ====================================================
+   REWARDS PAGE — FAQ Accordion + Referral Form
+   ==================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ---- FAQ Accordion ----
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (faqItems.length) {
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      if (!btn || !answer) return;
+
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close all others
+        faqItems.forEach(other => {
+          const ob = other.querySelector('.faq-question');
+          const oa = other.querySelector('.faq-answer');
+          if (ob && oa) {
+            ob.setAttribute('aria-expanded', 'false');
+            oa.style.display = 'none';
+          }
+        });
+
+        // Toggle clicked
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          answer.style.display = 'block';
+          answer.style.animation = 'fadeInUp 0.3s ease';
+        }
+      });
+    });
+  }
+
+  // ---- Referral Form ----
+  const referralForm = document.getElementById('referralForm');
+  if (!referralForm) return;
+
+  referralForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const yourName    = referralForm.querySelector('#ref-your-name').value.trim();
+    const yourPhone   = referralForm.querySelector('#ref-your-phone').value.trim();
+    const friendName  = referralForm.querySelector('#ref-friend-name').value.trim();
+    const friendPhone = referralForm.querySelector('#ref-friend-phone').value.trim();
+    const consent     = referralForm.querySelector('#ref-consent').checked;
+
+    if (!yourName || !yourPhone || !friendName || !friendPhone) {
+      alert('Please fill in all required fields before submitting.');
+      return;
+    }
+    if (!consent) {
+      alert('Please confirm that your friend is happy for you to share their details.');
+      return;
+    }
+
+    const friendArea    = referralForm.querySelector('#ref-friend-area').value.trim();
+    const serviceInterest = referralForm.querySelector('#ref-service').value;
+    const message       = referralForm.querySelector('#ref-message').value.trim();
+
+    const serviceLabels = {
+      'maid-regular':  'Regular Maid / Domestic Worker',
+      'maid-onceoff':  'Once-Off / Deep Cleaning',
+      'carpet':        'Carpet & Upholstery Cleaning',
+      'pest':          'Pest Control',
+      'commercial':    'Commercial / Office Cleaning',
+      'hair-braiding': 'Hair Braiding (Sethakga HAIR)',
+      'not-sure':      'Not sure yet',
+      '':              'Not specified'
+    };
+
+    const waText = encodeURIComponent(
+      `Hi Sethakga! I'd like to refer a friend 🌟\n\n` +
+      `MY DETAILS\nName: ${yourName}\nPhone: ${yourPhone}\n\n` +
+      `FRIEND'S DETAILS\nName: ${friendName}\nPhone: ${friendPhone}` +
+      (friendArea ? `\nArea: ${friendArea}` : '') +
+      (serviceInterest ? `\nInterested in: ${serviceLabels[serviceInterest] || serviceInterest}` : '') +
+      (message ? `\n\nExtra info: ${message}` : '') +
+      `\n\nPlease apply my referral reward to my next booking. Thank you!`
+    );
+
+    const waUrl = `https://wa.me/27729249068?text=${waText}`;
+
+    // Provide confirmation and open WhatsApp
+    alert(`Thank you, ${yourName}! We'll reach out to ${friendName} and apply your reward once they complete their first booking. Opening WhatsApp now...`);
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    referralForm.reset();
+  });
+
+});

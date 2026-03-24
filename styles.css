@@ -3244,3 +3244,581 @@ footer {
   /* Prevent any horizontal scroll on body */
   body { overflow-x: hidden; }
 }
+
+
+/* ====================================================
+   REWARDS PAGE
+   ==================================================== */
+
+/* Page hero variant */
+.page-hero--rewards .page-hero-title span {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- HOW IT WORKS ---- */
+.rewards-how {
+  padding: 90px 0;
+  background: var(--white);
+}
+.rewards-how-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 60px;
+}
+.rewards-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.rewards-step {
+  flex: 0 0 220px;
+  max-width: 240px;
+  text-align: center;
+  padding: 32px 20px;
+  border-radius: var(--radius);
+  background: var(--gold-pale);
+  border: 1px solid rgba(212,175,55,0.25);
+  position: relative;
+}
+.rewards-step .rs-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: rgba(212,175,55,0.20);
+  line-height: 1;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+.rewards-step .rs-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 18px;
+  box-shadow: 0 6px 20px rgba(212,175,55,0.35);
+}
+.rewards-step h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.rewards-step p {
+  font-size: 0.84rem;
+  color: var(--grey-mid);
+  line-height: 1.6;
+}
+.rs-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.4rem;
+  padding: 0 8px;
+  margin-top: 60px;
+}
+
+/* ---- TIERS ---- */
+.rewards-tiers {
+  padding: 90px 0;
+  background: var(--grey-light, #F7F7F7);
+}
+.rewards-tiers-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 60px;
+}
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.tier-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 36px 28px 30px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  position: relative;
+  transition: var(--transition);
+}
+.tier-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+.tier-featured {
+  border-color: var(--gold);
+  transform: scale(1.04);
+  background: linear-gradient(160deg, #fffdf0 0%, var(--white) 100%);
+}
+.tier-featured:hover { transform: scale(1.04) translateY(-6px); }
+.tier-ribbon {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.tier-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 10px auto 18px;
+}
+.tier-bronze { background: #FFF0E0; color: #C87533; }
+.tier-silver { background: #F0F2F5; color: #888EA8; }
+.tier-gold   { background: var(--gold-pale); color: var(--gold-dark); }
+.tier-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.tier-refs {
+  font-size: 0.82rem;
+  color: var(--grey-mid);
+  margin-bottom: 22px;
+  background: var(--gold-pale);
+  display: inline-block;
+  padding: 3px 14px;
+  border-radius: 20px;
+}
+.tier-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tier-perks li {
+  font-size: 0.84rem;
+  color: var(--dark);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.tier-perks li i { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+.btn-outline-gold {
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold-dark);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.tiers-note {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--grey-mid);
+  margin-top: 36px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tiers-note i { color: var(--gold); margin-right: 6px; }
+
+/* ---- WALL OF CHAMPIONS ---- */
+.rewards-wall {
+  padding: 90px 0;
+  background: var(--white);
+}
+.rewards-wall-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 50px;
+}
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.wall-card {
+  background: var(--grey-light, #F7F7F7);
+  border-radius: 16px;
+  padding: 28px 20px 22px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: var(--transition);
+  position: relative;
+}
+.wall-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.wall-card--you {
+  border: 2px dashed var(--gold);
+  background: var(--gold-pale);
+}
+.wall-rank {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.rank-1 { color: var(--gold-dark); }
+.rank-2 { color: #888EA8; }
+.rank-3 { color: #C87533; }
+.rank-4 { color: var(--grey-mid); min-height: 20px; }
+.rank-you { color: var(--gold-dark); }
+.wall-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--white);
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+.wall-avatar--q { background: rgba(212,175,55,0.35); color: var(--gold-dark); }
+.wall-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 2px;
+}
+.wall-area {
+  font-size: 0.75rem;
+  color: var(--grey-mid);
+  margin-bottom: 10px;
+}
+.wall-refs {
+  font-size: 0.78rem;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.wall-refs i { color: var(--gold); margin-right: 4px; }
+.wall-tier {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.tier-gold-pill   { background: var(--gold-pale); color: var(--gold-dark); }
+.tier-silver-pill { background: #F0F2F5; color: #555; }
+.tier-bronze-pill { background: #FFF0E0; color: #C87533; }
+
+/* ---- ACHIEVEMENTS ---- */
+.rewards-achievements {
+  padding: 90px 0;
+  background: var(--dark);
+}
+.achievements-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 50px;
+}
+.achievements-header .section-tag {
+  background: rgba(212,175,55,0.12);
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.achievements-header .section-title {
+  color: var(--white);
+}
+.achievements-header .section-title span {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.achievements-header .section-subtitle { color: rgba(255,255,255,0.60); }
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+.achievement-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+.achievement-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-4px);
+  border-color: rgba(212,175,55,0.30);
+}
+.ach-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.ach-icon--gold   { background: rgba(212,175,55,0.15); color: var(--gold); }
+.ach-icon--pink   { background: rgba(196,30,107,0.15); color: var(--pink); }
+.ach-icon--purple { background: rgba(123,63,242,0.15); color: var(--purple-light); }
+.ach-body { flex: 1; }
+.ach-year {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.ach-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.ach-body-text {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.ach-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+  background: rgba(212,175,55,0.10);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(212,175,55,0.25);
+}
+
+/* ---- REFERRAL FORM SECTION ---- */
+.rewards-form-section {
+  padding: 90px 0;
+  background: var(--gold-pale);
+}
+.rewards-form-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 50px;
+  align-items: start;
+}
+.rewards-form-info .section-title { margin-bottom: 16px; }
+.rewards-form-info p {
+  font-size: 0.9rem;
+  color: var(--grey-mid);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.refer-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.refer-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--dark);
+}
+.refer-benefit-item i { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+.btn-whatsapp-refer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.btn-whatsapp-refer:hover { background: #1EBE5A; transform: translateY(-2px); }
+.rewards-form-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px 36px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.10);
+}
+.form-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-section-title i { color: var(--gold); }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ---- FAQ ---- */
+.rewards-faq {
+  padding: 90px 0;
+  background: var(--white);
+}
+.faq-header {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto 50px;
+}
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--dark);
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s;
+}
+.faq-question:hover { background: var(--gold-pale); }
+.faq-question[aria-expanded="true"] { background: var(--gold-pale); color: var(--gold-dark); }
+.faq-icon {
+  flex-shrink: 0;
+  color: var(--gold);
+  transition: transform 0.3s ease;
+}
+.faq-question[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+.faq-answer {
+  display: none;
+  padding: 0 24px 20px;
+  background: var(--gold-pale);
+}
+.faq-answer p {
+  font-size: 0.88rem;
+  color: var(--grey-mid);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---- CTA STRIP ---- */
+.rewards-cta-strip {
+  padding: 70px 0;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 60%, var(--gold-light) 100%);
+}
+.cta-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.cta-strip-text h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.cta-strip-text p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 480px;
+}
+.cta-strip-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cta-strip-actions .btn-primary {
+  background: var(--white);
+  color: var(--gold-dark);
+  border: none;
+}
+.cta-strip-actions .btn-primary:hover { background: rgba(255,255,255,0.90); }
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.btn-whatsapp:hover { background: #1EBE5A; transform: translateY(-2px); }
+
+/* ---- REWARDS RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .tiers-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .tier-featured { transform: none; }
+  .tier-featured:hover { transform: translateY(-6px); }
+  .rewards-form-wrap { grid-template-columns: 1fr; }
+  .achievements-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .rewards-steps { flex-direction: column; align-items: center; gap: 12px; }
+  .rs-connector { transform: rotate(90deg); margin: 4px 0; }
+  .wall-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-strip-inner { flex-direction: column; text-align: center; }
+  .cta-strip-text p { margin: 0 auto; }
+  .rewards-form-card { padding: 28px 20px; }
+}
+@media (max-width: 480px) {
+  .wall-grid { grid-template-columns: 1fr; }
+}
