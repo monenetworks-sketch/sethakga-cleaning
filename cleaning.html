@@ -896,103 +896,385 @@
           <p>Fill out the form below and we'll provide a custom quote within 24 hours</p>
         </div>
 
-        <form class="booking-form" id="commercialBookingForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="com-company">Company / Business Name *</label>
-              <input type="text" id="com-company" name="company" required placeholder="Your business name">
+        <form class="booking-form smart-form" id="commercialBookingForm">
+
+          <!-- Progress Indicator -->
+          <div class="form-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="comProgressFill"></div>
             </div>
-            <div class="form-group">
-              <label for="com-contact">Contact Person *</label>
-              <input type="text" id="com-contact" name="contact" required placeholder="Your name">
+            <div class="progress-text">
+              <span id="comCurrentStep">Step 1</span> of <span id="comTotalSteps">6</span>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="com-phone">Phone Number *</label>
-              <input type="tel" id="com-phone" name="phone" required placeholder="e.g. 010 634 5557">
+          <!-- STEP 1: Contact Details -->
+          <div class="form-step active" data-step="1">
+            <h4 class="step-title">Contact Information</h4>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="com-company">Company / Business Name *</label>
+                <input type="text" id="com-company" name="company" required placeholder="Your business name">
+              </div>
+              <div class="form-group">
+                <label for="com-contact">Contact Person *</label>
+                <input type="text" id="com-contact" name="contact" required placeholder="Your full name">
+              </div>
             </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="com-phone">Phone Number *</label>
+                <input type="tel" id="com-phone" name="phone" required placeholder="e.g. 010 634 5557">
+              </div>
+              <div class="form-group">
+                <label for="com-email">Email Address *</label>
+                <input type="email" id="com-email" name="email" required placeholder="business@example.com">
+              </div>
+            </div>
+
             <div class="form-group">
-              <label for="com-email">Email Address *</label>
-              <input type="email" id="com-email" name="email" required placeholder="business@example.com">
+              <label for="com-whatsapp">WhatsApp Number *</label>
+              <input type="tel" id="com-whatsapp" name="whatsapp" required placeholder="e.g. 072 924 9068">
+            </div>
+
+            <div class="form-group">
+              <label for="com-address">Full Business Address *</label>
+              <textarea id="com-address" name="address" required rows="2" placeholder="Street, suburb, city, postal code"></textarea>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-pink" disabled>
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-cleaning com-next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="com-location">Location / Suburb *</label>
-              <input type="text" id="com-location" name="location" required placeholder="e.g. Midrand, Sandton">
+          <!-- STEP 2: Property Details -->
+          <div class="form-step" data-step="2">
+            <h4 class="step-title">Property Details</h4>
+            <p class="step-description">Tell us about your space so we can send the right team with the right equipment.</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="com-property-type">Property Type *</label>
+                <select id="com-property-type" name="property-type" required>
+                  <option value="">Select property type</option>
+                  <option value="office-small">Office — Small (under 500m²)</option>
+                  <option value="office-medium">Office — Medium (500–1000m²)</option>
+                  <option value="office-large">Office — Large (over 1000m²)</option>
+                  <option value="retail">Retail Store / Shop</option>
+                  <option value="warehouse">Warehouse</option>
+                  <option value="factory">Factory / Manufacturing</option>
+                  <option value="construction">Construction / Renovation Site</option>
+                  <option value="other">Other Commercial</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="com-floors">Number of Floors *</label>
+                <select id="com-floors" name="floors" required>
+                  <option value="">Select floors</option>
+                  <option value="1">1 Floor</option>
+                  <option value="2">2 Floors</option>
+                  <option value="3">3 Floors</option>
+                  <option value="4+">4+ Floors</option>
+                </select>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="com-property-type">Property Type *</label>
-              <select id="com-property-type" name="property-type" required>
-                <option value="">Select property type</option>
-                <option value="office-small">Office (Small - Under 500m²)</option>
-                <option value="office-medium">Office (Medium - 500-1000m²)</option>
-                <option value="office-large">Office (Large - Over 1000m²)</option>
-                <option value="retail">Retail Store / Shop</option>
-                <option value="warehouse">Warehouse</option>
-                <option value="factory">Factory / Manufacturing Facility</option>
-                <option value="construction">Construction Site</option>
-                <option value="other">Other Commercial</option>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="com-size">Approximate Size (m²)</label>
+                <input type="text" id="com-size" name="size" placeholder="e.g. 250m²">
+              </div>
+              <div class="form-group">
+                <label for="com-offices">Number of Offices / Rooms</label>
+                <input type="number" id="com-offices" name="offices" min="1" placeholder="e.g. 10">
+              </div>
+            </div>
+
+            <!-- Construction-specific: site condition -->
+            <div id="com-construction-details" class="form-group" style="display:none;">
+              <label for="com-site-condition">Current Site Condition *</label>
+              <select id="com-site-condition" name="site-condition">
+                <option value="">Select condition</option>
+                <option value="post-construction">Post-Construction</option>
+                <option value="post-renovation">Post-Renovation</option>
+                <option value="pre-handover">Pre-Handover / Move-In Ready</option>
+                <option value="mid-construction">Mid-Construction</option>
               </select>
             </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-pink com-prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-cleaning com-next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
 
-          <div class="form-row">
+          <!-- STEP 3: Service Selection -->
+          <div class="form-step" data-step="3">
+            <h4 class="step-title">Service Selection</h4>
+
             <div class="form-group">
-              <label for="com-service">Service Type *</label>
+              <label for="com-service">Which Service Do You Need? *</label>
               <select id="com-service" name="service" required>
                 <option value="">Select a service</option>
-                <option value="office-regular">Office Cleaning (Regular)</option>
-                <option value="office-deep">Office Deep Cleaning (Once-Off)</option>
-                <option value="construction">Pre/Post-Construction Cleanup</option>
+                <option value="office-regular">Office Cleaning — Regular</option>
+                <option value="office-deep">Office Deep Cleaning — Once-Off</option>
+                <option value="construction">Pre / Post-Construction Cleanup</option>
                 <option value="window">Window Cleaning</option>
                 <option value="industrial">Industrial Cleaning</option>
-                <option value="carpet-commercial">Carpet & Upholstery</option>
+                <option value="carpet-commercial">Carpet &amp; Upholstery</option>
                 <option value="pest-commercial">Pest Control</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="com-frequency">Cleaning Frequency</label>
+
+            <!-- Regular Office Cleaning info -->
+            <div id="com-office-regular-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-info-circle"></i> Regular Office Cleaning</h5>
+              <ul>
+                <li>Recurring cleaning — schedule confirmed based on team availability</li>
+                <li>Includes general office cleaning, vacuuming, dusting, ablution areas</li>
+                <li>Works around your business hours — we can clean before, during, or after hours</li>
+                <li>Dedicated Sethakga team assigned to your premises</li>
+                <li>All cleaning materials and equipment supplied by Sethakga</li>
+              </ul>
+            </div>
+
+            <!-- Deep Cleaning info -->
+            <div id="com-deep-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-info-circle"></i> Office Deep Cleaning — Once-Off</h5>
+              <ul>
+                <li>A 50% deposit secures the booking and is non-refundable</li>
+                <li>Dedicated Sethakga Deep Cleaning Team allocated to your service</li>
+                <li>All cleaning materials, equipment, and supplies included</li>
+                <li>Walkthrough inspection before final payment</li>
+                <li>Access to water and electricity required for the duration</li>
+              </ul>
+            </div>
+
+            <!-- Construction cleanup info -->
+            <div id="com-construction-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-hard-hat"></i> Pre / Post-Construction Cleanup</h5>
+              <ul>
+                <li>Specialist team with industrial-grade equipment for dust, debris, and residue removal</li>
+                <li>A 50% deposit required to confirm booking</li>
+                <li>Duration depends on site size and condition — assessed on-site</li>
+                <li>All materials and equipment supplied by Sethakga</li>
+                <li>Walkthrough sign-off before final payment</li>
+              </ul>
+            </div>
+
+            <!-- Window cleaning info -->
+            <div id="com-window-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-window-maximize"></i> Window Cleaning</h5>
+              <ul>
+                <li>Interior and exterior window cleaning available</li>
+                <li>Quote based on number of windows, floors, and accessibility</li>
+                <li>All equipment and cleaning solutions supplied</li>
+              </ul>
+              <div class="form-group" style="margin-top:14px;">
+                <label>Which windows need cleaning? *</label>
+                <div class="checkbox-grid">
+                  <label class="checkbox-label"><input type="checkbox" name="window_scope" value="interior"> Interior only</label>
+                  <label class="checkbox-label"><input type="checkbox" name="window_scope" value="exterior"> Exterior only</label>
+                  <label class="checkbox-label"><input type="checkbox" name="window_scope" value="both"> Interior &amp; Exterior</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Industrial Cleaning info -->
+            <div id="com-industrial-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-industry"></i> Industrial Cleaning</h5>
+              <ul>
+                <li>Heavy-duty cleaning for warehouses, factories, and industrial spaces</li>
+                <li>Industrial-grade pressure washing, scrubbing, and degreasing available</li>
+                <li>Quote based on facility size, type, and scope — site visit may be required</li>
+                <li>All safety requirements and compliance standards observed</li>
+              </ul>
+            </div>
+
+            <!-- Carpet & Upholstery info -->
+            <div id="com-carpet-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-couch"></i> Carpet &amp; Upholstery Cleaning</h5>
+              <ul>
+                <li>Professional steam cleaning for carpets, rugs, office chairs, and couches</li>
+                <li>Quote based on number and type of items</li>
+                <li>Please list all items below so we can prepare an accurate quote</li>
+              </ul>
+            </div>
+
+            <!-- Pest Control info + pest types -->
+            <div id="com-pest-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-bug"></i> Pest Control</h5>
+              <ul>
+                <li>Commercial-grade pest control for offices, warehouses &amp; industrial sites</li>
+                <li>Quote based on property size and pest type</li>
+                <li>Please select your pest concern below</li>
+              </ul>
+              <div class="form-group" style="margin-top:14px;">
+                <label>Kindly indicate pest concern (select all that apply) *</label>
+                <div class="checkbox-grid">
+                  <label class="checkbox-label"><input type="checkbox" name="com-pest-types" value="cockroaches"> Cockroaches</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com-pest-types" value="ants"> Ants</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com-pest-types" value="rodents"> Rodents (Rats / Mice)</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com-pest-types" value="fleas"> Fleas / Ticks</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com-pest-types" value="bedbugs"> Bed Bugs</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com-pest-types" value="preventative"> General Preventative Treatment</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frequency (shown for regular/recurring services) -->
+            <div id="com-frequency-field" class="form-group" style="display:none;">
+              <label for="com-frequency">Cleaning Frequency *</label>
               <select id="com-frequency" name="frequency">
                 <option value="">Select frequency</option>
-                <option value="once-off">Once-Off</option>
+                <option value="daily">Daily</option>
                 <option value="weekly">Weekly</option>
                 <option value="bi-weekly">Bi-Weekly</option>
                 <option value="monthly">Monthly</option>
-                <option value="daily">Daily</option>
+                <option value="once-off">Once-Off</option>
+                <option value="flexible">Flexible — to discuss</option>
               </select>
+              <!-- Preferred cleaning days — shown for weekly+ regular -->
+              <div id="com-service-days" style="display:none; margin-top:14px;">
+                <label>Preferred cleaning day(s) <span class="req">*</span></label>
+                <p class="form-hint">Final scheduling confirmed based on team availability.</p>
+                <div class="checkbox-grid">
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Monday"> Monday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Tuesday"> Tuesday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Wednesday"> Wednesday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Thursday"> Thursday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Friday"> Friday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Saturday"> Saturday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="Sunday"> Sunday</label>
+                  <label class="checkbox-label"><input type="checkbox" name="com_days" value="flexible"> Flexible</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-pink com-prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-cleaning com-next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="com-date">Preferred Start Date *</label>
-              <input type="date" id="com-date" name="date" required>
+          <!-- STEP 4: Extras / Specific Items -->
+          <div class="form-step" data-step="4">
+            <h4 class="step-title">Extras &amp; Specific Items</h4>
+            <p class="step-description">Please provide any quantities or details to help us prepare an accurate quote.</p>
+
+            <!-- Carpet items list (carpet service only) -->
+            <div id="com-carpet-items" class="form-group">
+              <label for="com-carpet-list">List carpets, chairs, couches (with seater size), curtains to be cleaned</label>
+              <textarea id="com-carpet-list" name="carpet-items" rows="4" placeholder="e.g. 3 office carpets, 20 office chairs, 1 x 3-seater reception couch, 6 curtains"></textarea>
             </div>
+
             <div class="form-group">
-              <label for="com-time">Preferred Time</label>
-              <select id="com-time" name="time">
+              <label for="com-special-areas">Any Specific Areas or Equipment Requiring Extra Attention?</label>
+              <textarea id="com-special-areas" name="special-areas" rows="3" placeholder="e.g. Server room (no water), reception area priority, canteen deep clean required..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="com-access">Site Access &amp; Key Holder Details</label>
+              <textarea id="com-access" name="access" rows="2" placeholder="e.g. Security desk access, contact John on 082 000 0000, after-hours access code required"></textarea>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-pink com-prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-cleaning com-next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 5: Schedule -->
+          <div class="form-step" data-step="5">
+            <h4 class="step-title">Scheduling</h4>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="com-date">Preferred Start Date *</label>
+                <input type="date" id="com-date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="com-alt-date">Alternative Date</label>
+                <input type="date" id="com-alt-date" name="alt-date">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="com-time">Preferred Cleaning Time *</label>
+              <select id="com-time" name="time" required>
                 <option value="">Select time</option>
-                <option value="after-hours">After Hours (6PM+)</option>
-                <option value="early-morning">Early Morning (6AM-8AM)</option>
-                <option value="business-hours">Business Hours (9AM-5PM)</option>
+                <option value="before-hours">Before Hours (before 8AM)</option>
+                <option value="business-hours">During Business Hours (8AM–5PM)</option>
+                <option value="after-hours">After Hours (after 5PM)</option>
                 <option value="weekend">Weekend</option>
                 <option value="flexible">Flexible</option>
               </select>
             </div>
+
+            <div class="form-group">
+              <label for="com-notes">Project Details / Additional Notes</label>
+              <textarea id="com-notes" name="notes" rows="4" placeholder="Any additional information that will help us prepare your quote accurately..."></textarea>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-pink com-prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-cleaning com-next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="com-notes">Project Details / Special Requirements</label>
-            <textarea id="com-notes" name="notes" rows="4" placeholder="Describe your cleaning needs, square footage, number of offices, specific areas requiring attention, etc."></textarea>
+          <!-- STEP 6: Billing & Confirmation -->
+          <div class="form-step" data-step="6">
+            <h4 class="step-title">Billing &amp; Confirmation</h4>
+            <p class="step-description">Please confirm billing responsibility and agree to our service terms.</p>
+
+            <div class="form-group">
+              <label>Will you be responsible for billing and payments? *</label>
+              <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="com-billing" value="yes" required> Yes</label>
+                <label class="radio-label"><input type="radio" name="com-billing" value="no" required> No</label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 24px;">
+              <label class="checkbox-label disclaimer-check">
+                <input type="checkbox" name="com-terms" id="com-terms" required>
+                <span>I confirm that the information provided is correct and I consent to The Sethakga Group processing my request. I have read, understood, and agree to The Sethakga Group service terms as per my request. *</span>
+              </label>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-pink com-prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="submit" class="btn btn-cleaning btn-large">
+                <i class="fas fa-paper-plane"></i> Submit Quote Request
+              </button>
+            </div>
           </div>
 
-          <button type="submit" class="btn btn-cleaning btn-large btn-block">
-            <i class="fas fa-paper-plane"></i> Request Commercial Quote
-          </button>
         </form>
       </div>
     </div>

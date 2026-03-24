@@ -163,6 +163,148 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================
+   COMMERCIAL FORM — Multi-step + Conditional Logic
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const comForm = document.getElementById('commercialBookingForm');
+  if (!comForm) return;
+
+  const comSteps    = comForm.querySelectorAll('.form-step');
+  const comProgress = document.getElementById('comProgressFill');
+  const comCurrent  = document.getElementById('comCurrentStep');
+  const comTotal    = document.getElementById('comTotalSteps');
+  let comStep       = 1;
+  const comTotalNum = comSteps.length;
+  if (comTotal) comTotal.textContent = comTotalNum;
+
+  function comUpdateProgress() {
+    if (comProgress) comProgress.style.width = `${(comStep / comTotalNum) * 100}%`;
+    if (comCurrent)  comCurrent.textContent  = `Step ${comStep}`;
+  }
+
+  function comShowStep(n) {
+    comSteps.forEach((s, i) => s.classList.toggle('active', i + 1 === n));
+    comStep = n;
+    comUpdateProgress();
+    comForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function comValidate(n) {
+    const step   = comSteps[n - 1];
+    const inputs = step.querySelectorAll('input[required], select[required], textarea[required]');
+    let ok = true;
+    inputs.forEach(inp => {
+      if (inp.offsetParent !== null) {
+        if (!inp.value.trim()) { ok = false; inp.style.borderColor = '#e74c3c'; }
+        else inp.style.borderColor = '';
+      }
+    });
+    const terms = document.getElementById('com-terms');
+    if (terms && n === comTotalNum && !terms.checked) {
+      ok = false;
+      alert('Please agree to the service terms to proceed.');
+    }
+    return ok;
+  }
+
+  comForm.querySelectorAll('.com-next-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (comValidate(comStep)) {
+        if (comStep < comTotalNum) comShowStep(comStep + 1);
+      } else {
+        alert('Please fill in all required fields before continuing.');
+      }
+    });
+  });
+
+  comForm.querySelectorAll('.com-prev-step').forEach(btn => {
+    btn.addEventListener('click', () => { if (comStep > 1) comShowStep(comStep - 1); });
+  });
+
+  // --- Service conditional logic ---
+  const comService      = document.getElementById('com-service');
+  const comPropertyType = document.getElementById('com-property-type');
+
+  const comInfoIds = [
+    'com-office-regular-info', 'com-deep-info', 'com-construction-info',
+    'com-window-info', 'com-industrial-info', 'com-carpet-info', 'com-pest-info'
+  ];
+
+  function hideAllComInfo() {
+    comInfoIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    const freq = document.getElementById('com-frequency-field');
+    if (freq) freq.style.display = 'none';
+  }
+
+  if (comService) {
+    comService.addEventListener('change', () => {
+      hideAllComInfo();
+      const val = comService.value;
+      const map = {
+        'office-regular':    'com-office-regular-info',
+        'office-deep':       'com-deep-info',
+        'construction':      'com-construction-info',
+        'window':            'com-window-info',
+        'industrial':        'com-industrial-info',
+        'carpet-commercial': 'com-carpet-info',
+        'pest-commercial':   'com-pest-info',
+      };
+      if (map[val]) {
+        const el = document.getElementById(map[val]);
+        if (el) { el.style.display = 'block'; el.style.animation = 'fadeInUp 0.4s ease'; }
+      }
+      // Frequency field only for recurring services
+      const freqField = document.getElementById('com-frequency-field');
+      if (freqField) freqField.style.display = val === 'office-regular' ? 'block' : 'none';
+    });
+  }
+
+  // Show service days when recurring frequency chosen
+  const comFrequency = document.getElementById('com-frequency');
+  if (comFrequency) {
+    comFrequency.addEventListener('change', () => {
+      const days = document.getElementById('com-service-days');
+      if (days) {
+        days.style.display = ['daily', 'weekly', 'bi-weekly'].includes(comFrequency.value) ? 'block' : 'none';
+      }
+    });
+  }
+
+  // Show construction site condition when property type = construction
+  if (comPropertyType) {
+    comPropertyType.addEventListener('change', () => {
+      const cd = document.getElementById('com-construction-details');
+      if (cd) cd.style.display = comPropertyType.value === 'construction' ? 'block' : 'none';
+    });
+  }
+
+  // Clear validation borders
+  comForm.querySelectorAll('input, select, textarea').forEach(inp => {
+    inp.addEventListener('input', () => { inp.style.borderColor = ''; });
+  });
+
+  // Submission
+  comForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!comValidate(comTotalNum)) return;
+    const data = {};
+    for (let [k, v] of new FormData(comForm).entries()) {
+      data[k] = data[k] ? [].concat(data[k], v) : v;
+    }
+    console.log('Commercial Booking:', data);
+    alert('Thank you for your quote request!\n\nOur commercial team will review your details and contact you within 24 hours with a customised quote.\n\nYou will receive a confirmation via WhatsApp and email shortly.');
+    comForm.reset();
+    hideAllComInfo();
+    comShowStep(1);
+  });
+
+  comShowStep(1);
+});
+
+/* ============================================================
    CONTACT PAGE — Conditional maid service fields
 ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
