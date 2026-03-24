@@ -223,11 +223,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Special validation for checkboxes (pest control types)
     const pestControlSelect = document.getElementById('res-pest-control');
-    if (pestControlSelect && pestControlSelect.value === 'yes') {
+    if (pestControlSelect && pestControlSelect.offsetParent !== null && pestControlSelect.value === 'yes') {
       const pestCheckboxes = step.querySelectorAll('input[name="pest-types"]:checked');
       if (pestCheckboxes.length === 0 && stepNumber === 4) {
         isValid = false;
         alert('Please select at least one pest type if you require pest control services.');
+      }
+    }
+
+    // Special validation for Full-Time Fairy placement type (Step 3)
+    const serviceSelect = document.getElementById('res-service');
+    const fullTimePlacement = document.getElementById('full-time-placement-choice');
+    if (serviceSelect && serviceSelect.value === 'full-time' && stepNumber === 3) {
+      const placementTypeSelected = document.querySelector('input[name="placement-type"]:checked');
+      if (!placementTypeSelected) {
+        isValid = false;
+        alert('Please select a placement type (Company-Managed or Client-Managed) for Full-Time Fairy service.');
+      }
+      // If company-managed, check package selection
+      if (placementTypeSelected && placementTypeSelected.value === 'company-managed') {
+        const packageSelected = document.querySelector('input[name="maid-package"]:checked');
+        if (!packageSelected) {
+          isValid = false;
+          alert('Please select a maid services package.');
+        }
       }
     }
 
@@ -266,17 +285,90 @@ document.addEventListener('DOMContentLoaded', () => {
   // Conditional Logic: Deep Cleaning Info Box
   const serviceSelect = document.getElementById('res-service');
   const deepCleaningInfo = document.getElementById('deep-cleaning-info');
+  const fullTimePlacementChoice = document.getElementById('full-time-placement-choice');
+  const regularCleaningStep4 = document.getElementById('regular-cleaning-step4');
+  const fulltimeFairyStep4 = document.getElementById('fulltime-fairy-step4');
   
-  if (serviceSelect && deepCleaningInfo) {
+  if (serviceSelect) {
     serviceSelect.addEventListener('change', () => {
-      if (serviceSelect.value === 'deep-cleaning') {
-        deepCleaningInfo.style.display = 'block';
-        deepCleaningInfo.style.animation = 'fadeInUp 0.5s ease';
-      } else {
-        deepCleaningInfo.style.display = 'none';
+      // Deep Cleaning Info Box
+      if (deepCleaningInfo) {
+        if (serviceSelect.value === 'deep-cleaning') {
+          deepCleaningInfo.style.display = 'block';
+          deepCleaningInfo.style.animation = 'fadeInUp 0.5s ease';
+        } else {
+          deepCleaningInfo.style.display = 'none';
+        }
+      }
+
+      // Full-Time Fairy Placement Choice
+      if (fullTimePlacementChoice) {
+        if (serviceSelect.value === 'full-time') {
+          fullTimePlacementChoice.style.display = 'block';
+          fullTimePlacementChoice.style.animation = 'fadeInUp 0.5s ease';
+        } else {
+          fullTimePlacementChoice.style.display = 'none';
+        }
+      }
+
+      // Toggle Step 4 content based on service type
+      if (regularCleaningStep4 && fulltimeFairyStep4) {
+        if (serviceSelect.value === 'full-time') {
+          regularCleaningStep4.style.display = 'none';
+          fulltimeFairyStep4.style.display = 'block';
+          // Remove required from regular cleaning fields
+          document.querySelectorAll('#regular-cleaning-step4 input[required], #regular-cleaning-step4 select[required]').forEach(field => {
+            field.removeAttribute('required');
+          });
+          // Add required to full-time fairy fields
+          document.querySelectorAll('#fulltime-fairy-step4 textarea, #fulltime-fairy-step4 input').forEach(field => {
+            field.setAttribute('required', 'required');
+          });
+        } else {
+          regularCleaningStep4.style.display = 'block';
+          fulltimeFairyStep4.style.display = 'none';
+          // Add required back to regular cleaning fields
+          const resCondition = document.getElementById('res-condition');
+          const resPestControl = document.getElementById('res-pest-control');
+          if (resCondition) resCondition.setAttribute('required', 'required');
+          if (resPestControl) resPestControl.setAttribute('required', 'required');
+          // Remove required from full-time fairy fields
+          document.querySelectorAll('#fulltime-fairy-step4 textarea, #fulltime-fairy-step4 input').forEach(field => {
+            field.removeAttribute('required');
+          });
+        }
       }
     });
   }
+
+  // Conditional Logic: Full-Time Fairy Placement Type
+  const placementTypeRadios = document.querySelectorAll('input[name="placement-type"]');
+  const companyManagedSection = document.getElementById('company-managed-section');
+  const clientManagedSection = document.getElementById('client-managed-section');
+  
+  placementTypeRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (companyManagedSection && clientManagedSection) {
+        if (radio.value === 'company-managed' && radio.checked) {
+          companyManagedSection.style.display = 'block';
+          clientManagedSection.style.display = 'none';
+          companyManagedSection.style.animation = 'fadeInUp 0.5s ease';
+          // Make package selection required
+          document.querySelectorAll('input[name="maid-package"]').forEach(pkg => {
+            pkg.setAttribute('required', 'required');
+          });
+        } else if (radio.value === 'client-managed' && radio.checked) {
+          companyManagedSection.style.display = 'none';
+          clientManagedSection.style.display = 'block';
+          clientManagedSection.style.animation = 'fadeInUp 0.5s ease';
+          // Remove package requirement
+          document.querySelectorAll('input[name="maid-package"]').forEach(pkg => {
+            pkg.removeAttribute('required');
+          });
+        }
+      }
+    });
+  });
 
   // Conditional Logic: Pest Control Types
   const pestControlSelect = document.getElementById('res-pest-control');

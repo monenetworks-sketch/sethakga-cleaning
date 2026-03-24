@@ -1001,6 +1001,10 @@ img { max-width: 100%; display: block; }
   font-size: 0.9rem;
 }
 
+.step-content-section {
+  animation: fadeInUp 0.5s ease;
+}
+
 /* ============================================================
    HERO (Home)
 ============================================================ */
@@ -1012,7 +1016,8 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   background: 
     linear-gradient(135deg, rgba(26,26,46,0.90) 0%, rgba(45,45,45,0.85) 50%, rgba(26,26,46,0.90) 100%),
-    url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    /* url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat; */
+    url('images/team-cleaning.jpeg') center/cover no-repeat;
 }
 
 .hero-bg-shapes {
@@ -1348,6 +1353,128 @@ img { max-width: 100%; display: block; }
 .cert-text .cert-year {
   font-size: 0.7rem;
   color: rgba(255,255,255,0.60);
+}
+
+/* ============================================================
+   SERVICES HOME — Sweepsouth-style icon grid
+============================================================ */
+#services-home {
+  padding: 72px 0 56px;
+  background: var(--white);
+}
+
+.services-home-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.services-home-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.5px;
+}
+
+/* Scrollable row — exactly like Sweepsouth */
+.services-home-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 4px;
+  margin-bottom: 40px;
+}
+
+/* Each icon tile */
+.service-home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 110px;
+  padding: 20px 8px 16px;
+  border-radius: 16px;
+  text-align: center;
+  color: var(--dark);
+  text-decoration: none;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.service-home-card:hover {
+  transform: translateY(-6px);
+  background: var(--grey-light);
+  box-shadow: var(--shadow);
+}
+
+.service-home-card h3 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--grey-mid);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.service-home-card:hover h3 {
+  color: var(--dark);
+}
+
+/* Icon circle */
+.service-home-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: transform var(--transition);
+}
+
+.service-home-card:hover .service-home-icon {
+  transform: scale(1.08);
+}
+
+/* Cleaning = soft pink */
+.service-icon-cleaning {
+  background: var(--pink-pale);
+  color: var(--pink);
+}
+
+/* Hair = soft purple */
+.service-icon-hair {
+  background: var(--purple-pale);
+  color: var(--purple);
+}
+
+/* CTA buttons row */
+.services-home-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Footer hint line */
+.services-home-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--grey-mid);
+}
+
+.link-underline {
+  color: var(--pink);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.link-underline:hover { color: var(--pink-light); }
+
+/* Responsive — stack tighter on mobile */
+@media (max-width: 480px) {
+  .service-home-card { width: 90px; padding: 16px 4px 12px; }
+  .service-home-icon { width: 52px; height: 52px; font-size: 1.2rem; }
+  .service-home-card h3 { font-size: 0.68rem; }
 }
 
 /* ============================================================

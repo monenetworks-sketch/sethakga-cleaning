@@ -485,6 +485,90 @@
               </ul>
             </div>
 
+            <!-- Full-Time Fairy Placement Choice (shows when full-time selected) -->
+            <div id="full-time-placement-choice" class="conditional-section" style="display: none;">
+              <div class="form-group">
+                <label>Full-Time Fairy Placement Options *</label>
+                <p style="font-size: 14px; color: #666; margin-bottom: 16px;">
+                  Dedicated full-time household support with company-managed or direct placement options.
+                </p>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="placement-type" value="company-managed">
+                    <span><strong>Company-Managed Placement (Indirect)</strong><br><small style="color: #888;">The Sethakga Group manages the fairy on your behalf</small></span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="placement-type" value="client-managed">
+                    <span><strong>Client-Managed Placement (Direct)</strong><br><small style="color: #888;">The client manages the fairy directly while The Sethakga Group handles recruitment and placement</small></span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Company-Managed Info & Package Selection -->
+              <div id="company-managed-section" class="service-info-box" style="display: none; margin-top: 24px;">
+                <h5><i class="fas fa-hands-helping"></i> Company-Managed Placement (Indirect)</h5>
+                <p style="font-size: 14px; margin-bottom: 12px;"><strong>The Sethakga Group manages the fairy on your behalf:</strong></p>
+                <ul>
+                  <li>50% deposit required before services commence</li>
+                  <li>Remaining 50% payable at month-end for the first month</li>
+                  <li>Thereafter, full payment due at month-end upon invoice</li>
+                  <li>Fairy supervision and coordination handled by The Sethakga Group</li>
+                  <li>Standby Fairy Available: A standby fairy may be provided when your regular fairy is unavailable</li>
+                </ul>
+
+                <div class="form-group" style="margin-top: 20px;">
+                  <label>Select Your Maid Services Package *</label>
+                  <div class="checkbox-group" style="grid-template-columns: 1fr;">
+                    <label class="radio-label" style="flex-direction: column; align-items: flex-start; padding: 16px;">
+                      <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                        <input type="radio" name="maid-package" value="stay-in-cooking">
+                        <div>
+                          <strong style="color: var(--pink-dark); font-size: 16px;">Stay-In (Including Cooking)</strong>
+                          <div style="font-size: 20px; font-weight: 700; color: var(--pink); margin-top: 4px;">R8,645<small style="font-size: 14px; font-weight: 400;">/month</small></div>
+                          <small style="color: #666;">Mon-Fri, plus 2 Saturdays</small>
+                        </div>
+                      </div>
+                    </label>
+                    <label class="radio-label" style="flex-direction: column; align-items: flex-start; padding: 16px;">
+                      <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                        <input type="radio" name="maid-package" value="stay-in-no-cooking">
+                        <div>
+                          <strong style="color: var(--pink-dark); font-size: 16px;">Stay-In (Excluding Cooking)</strong>
+                          <div style="font-size: 20px; font-weight: 700; color: var(--pink); margin-top: 4px;">R8,210<small style="font-size: 14px; font-weight: 400;">/month</small></div>
+                          <small style="color: #666;">Mon-Fri, plus 2 Saturdays</small>
+                        </div>
+                      </div>
+                    </label>
+                    <label class="radio-label" style="flex-direction: column; align-items: flex-start; padding: 16px;">
+                      <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                        <input type="radio" name="maid-package" value="stay-out-no-cooking">
+                        <div>
+                          <strong style="color: var(--pink-dark); font-size: 16px;">Stay-Out (Excluding Cooking)</strong>
+                          <div style="font-size: 20px; font-weight: 700; color: var(--pink); margin-top: 4px;">R7,475<small style="font-size: 14px; font-weight: 400;">/month</small></div>
+                          <small style="color: #666;">Mon-Fri, plus 2 Saturdays</small>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Client-Managed Info -->
+              <div id="client-managed-section" class="service-info-box" style="display: none; margin-top: 24px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.15));">
+                <h5><i class="fas fa-user-tie"></i> Client-Managed Placement (Direct)</h5>
+                <p style="font-size: 14px; margin-bottom: 12px;"><strong>The client manages the fairy directly while The Sethakga Group handles recruitment and placement:</strong></p>
+                <ul>
+                  <li><strong>Fairy Salary Requirement:</strong> Minimum monthly pay for the fairy must be R5,000.00 or more</li>
+                  <li><strong>Placement Fee:</strong> Sethakga placement fee is 50% of the fairy's agreed monthly salary</li>
+                  <li><strong>Recruitment Deposit:</strong> A 50% deposit of the placement fee is required to begin the recruitment process</li>
+                  <li><strong>Balance Payment:</strong> The remaining placement fee is payable once the fairy has commenced duties</li>
+                  <li><strong>SLA:</strong> 3-5 working days to present suitable candidates</li>
+                  <li><strong>Payment Structure:</strong> Client pays the fairy directly</li>
+                  <li><strong>Replacement Guarantee:</strong> One fairy replacement allowed within 2 months if not satisfied</li>
+                </ul>
+              </div>
+            </div>
+
             <div class="form-navigation">
               <button type="button" class="btn btn-outline-pink prev-step">
                 <i class="fas fa-arrow-left"></i> Back
@@ -495,62 +579,98 @@
             </div>
           </div>
 
-          <!-- STEP 4: Property Condition & Pest Control -->
+          <!-- STEP 4: Property Condition & Pest Control OR Full-Time Fairy Preferences -->
           <div class="form-step" data-step="4">
-            <h4 class="step-title">Property Condition</h4>
-            <p class="step-description">Please indicate the current condition of the property so we can prepare the correct team, equipment, and quotation.</p>
+            
+            <!-- For Regular Cleaning Services -->
+            <div id="regular-cleaning-step4" class="step-content-section">
+              <h4 class="step-title">Property Condition</h4>
+              <p class="step-description">Please indicate the current condition of the property so we can prepare the correct team, equipment, and quotation.</p>
 
-            <div class="form-group">
-              <label for="res-condition">What is the Current Condition? *</label>
-              <select id="res-condition" name="condition" required>
-                <option value="">Choose condition</option>
-                <option value="occupied">Occupied</option>
-                <option value="post-construction">Post Construction</option>
-                <option value="empty">Empty House</option>
-                <option value="post-renovation">Post Renovations</option>
-                <option value="post-pest">Post Pest Control</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="margin-top: 24px;">
-              <label for="res-pest-control">Do You Require Pest Control Services? *</label>
-              <select id="res-pest-control" name="pest-control" required>
-                <option value="">Choose option</option>
-                <option value="yes">Yes - Please include in my quotation</option>
-                <option value="no">No - Cleaning services only</option>
-              </select>
-            </div>
-
-            <!-- Pest Type Selection (shows if pest control = yes) -->
-            <div id="pest-types-section" class="conditional-section" style="display: none;">
               <div class="form-group">
-                <label>Kindly Indicate Pest Concern (Select all that apply) *</label>
-                <div class="checkbox-group">
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="pest-types" value="cockroaches">
-                    <span>Cockroaches</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="pest-types" value="ants">
-                    <span>Ants</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="pest-types" value="rodents">
-                    <span>Rodents (Rats / Mice)</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="pest-types" value="fleas">
-                    <span>Fleas / Ticks</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="pest-types" value="bedbugs">
-                    <span>Bed Bugs</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="pest-types" value="preventative">
-                    <span>General Preventative Treatment</span>
-                  </label>
+                <label for="res-condition">What is the Current Condition? *</label>
+                <select id="res-condition" name="condition">
+                  <option value="">Choose condition</option>
+                  <option value="occupied">Occupied</option>
+                  <option value="post-construction">Post Construction</option>
+                  <option value="empty">Empty House</option>
+                  <option value="post-renovation">Post Renovations</option>
+                  <option value="post-pest">Post Pest Control</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-top: 24px;">
+                <label for="res-pest-control">Do You Require Pest Control Services? *</label>
+                <select id="res-pest-control" name="pest-control">
+                  <option value="">Choose option</option>
+                  <option value="yes">Yes - Please include in my quotation</option>
+                  <option value="no">No - Cleaning services only</option>
+                </select>
+              </div>
+
+              <!-- Pest Type Selection (shows if pest control = yes) -->
+              <div id="pest-types-section" class="conditional-section" style="display: none;">
+                <div class="form-group">
+                  <label>Kindly Indicate Pest Concern (Select all that apply) *</label>
+                  <div class="checkbox-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="pest-types" value="cockroaches">
+                      <span>Cockroaches</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="pest-types" value="ants">
+                      <span>Ants</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="pest-types" value="rodents">
+                      <span>Rodents (Rats / Mice)</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="pest-types" value="fleas">
+                      <span>Fleas / Ticks</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="pest-types" value="bedbugs">
+                      <span>Bed Bugs</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="pest-types" value="preventative">
+                      <span>General Preventative Treatment</span>
+                    </label>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- For Full-Time Fairy Service -->
+            <div id="fulltime-fairy-step4" class="step-content-section" style="display: none;">
+              <h4 class="step-title">Family & Household Preferences</h4>
+              <p class="step-description">Help us find the perfect fairy for your household by sharing your family dynamics and preferences.</p>
+
+              <div class="form-group">
+                <label for="fairy-family-dynamics">State Your Family Dynamics *</label>
+                <textarea id="fairy-family-dynamics" name="family-dynamics" rows="3" placeholder="e.g., Family of 4 (2 adults, 2 children ages 5 and 8), 1 dog, prefer someone who enjoys working with kids..."></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fairy-nationality">Preferred Nationality/Language? *</label>
+                  <input type="text" id="fairy-nationality" name="preferred-nationality" placeholder="e.g., Zulu-speaking, any nationality">
+                </div>
+                <div class="form-group">
+                  <label for="fairy-age">Preferred Age? *</label>
+                  <input type="text" id="fairy-age" name="preferred-age" placeholder="e.g., 25-40 years old">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fairy-religion">Preferred Religion? *</label>
+                <input type="text" id="fairy-religion" name="preferred-religion" placeholder="e.g., Christian, Muslim, any">
+              </div>
+
+              <div class="form-group">
+                <label for="fairy-duties">Duties Required (Very Important!) *</label>
+                <textarea id="fairy-duties" name="duties-required" rows="4" placeholder="Please list all duties you expect the fairy to perform, e.g., cooking, cleaning, laundry, ironing, childcare, pet care, grocery shopping, etc."></textarea>
               </div>
             </div>
 
@@ -558,7 +678,7 @@
               <button type="button" class="btn btn-outline-pink prev-step">
                 <i class="fas fa-arrow-left"></i> Back
               </button>
-              <button type="button" class="btn btn-cleaning next-step">
+              <button type="button" class="btn btn-cleaning next-step" id="step4-next">
                 Next <i class="fas fa-arrow-right"></i>
               </button>
             </div>
@@ -881,7 +1001,7 @@
           Founded by <span>Kelotilwe Roberta Legwabe</span> &middot; Est. 2019
         </div>
         <div class="footer-credit">
-          Designed &amp; Hosted by <a href="https://www.monenetworks.co.za" target="_blank" rel="noopener noreferrer">Mone Networks</a>
+          Designed &amp; Developed by <a href="https://www.mplai.co.za" target="_blank" rel="noopener noreferrer">MPL AI</a>
         </div>
       </div>
     </div>
