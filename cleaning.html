@@ -31,8 +31,8 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="cleaning.html" class="active">Sethakga Cleaning</a></li>
           <li><a href="hair.html">Sethakga Hair</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <!-- <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li> -->
         </ul>
 
         <a href="contact.html" class="btn btn-primary nav-cta">
@@ -53,9 +53,9 @@
     <a href="cleaning.html" class="mobile-link">Sethakga Cleaning</a>
     <a href="hair.html" class="mobile-link">Sethakga Hair</a>
     <a href="pricing.html" class="mobile-link">Pricing</a>
-    <a href="contact.html" class="mobile-link">
+    <!-- <a href="contact.html" class="mobile-link">
       <i class="fas fa-calendar-check"></i> Contact &amp; Book
-    </a>
+    </a> -->
   </div>
 
   <!-- ==================== PAGE HERO ==================== -->
@@ -485,6 +485,51 @@
               </ul>
             </div>
 
+            <!-- Once-Off & Fortnightly Maid Info -->
+            <div id="maid-onceoff-info" class="service-info-box" style="display: none;">
+              <h5><i class="fas fa-info-circle"></i> Once-Off &amp; Fortnightly Maid Services</h5>
+              <p style="font-size:0.85rem; margin-bottom:10px;">Full payment is required once fairy availability has been confirmed.</p>
+              <ul>
+                <li>Allocated fairy based on location and selected service days</li>
+                <li>Duties: General cleaning, laundry, or ironing</li>
+                <li>Materials: Client to provide cleaning supplies</li>
+                <li>Work Hours: 08:00 – 16:30</li>
+                <li>Laundry completed using the client's washing machine</li>
+              </ul>
+            </div>
+
+            <!-- Recurring Weekly Maid Info -->
+            <div id="maid-recurring-info" class="service-info-box" style="display: none;">
+              <h5><i class="fas fa-info-circle"></i> Recurring Weekly Maid Services</h5>
+              <p style="font-size:0.85rem; margin-bottom:10px;">Payments are due between the 25th and the last day of each month.</p>
+              <ul>
+                <li>Allocated fairy based on location and selected service days</li>
+                <li>Duties may include general cleaning, laundry, and ironing</li>
+                <li>Standby fairy available when your regular fairy is unavailable</li>
+                <li>Materials: Client to provide cleaning supplies</li>
+                <li>Work Hours: 08:00 – 16:30</li>
+              </ul>
+            </div>
+
+            <!-- Transport Notice (all maid services) -->
+            <div id="maid-transport-notice" class="form-notice form-notice--gold" style="display: none;">
+              <i class="fas fa-bus"></i>
+              <div>
+                <strong>Transport Notice</strong>
+                Fairies travel using public transport. Clients may arrange private transport where necessary.
+                Sethakga Group does not provide pick-up or Uber services.
+              </div>
+            </div>
+
+            <!-- Transport accessibility (all maid services) -->
+            <div id="maid-transport-field" class="form-group" style="display: none;">
+              <label>Is your home easily accessible by public transport? <span class="req">*</span></label>
+              <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="transport_access" value="yes" /> Yes</label>
+                <label class="radio-label"><input type="radio" name="transport_access" value="no" /> No</label>
+              </div>
+            </div>
+
             <!-- Full-Time Fairy Placement Choice (shows when full-time selected) -->
             <div id="full-time-placement-choice" class="conditional-section" style="display: none;">
               <div class="form-group">
@@ -716,6 +761,22 @@
               <div class="form-group">
                 <label for="res-alt-date">Please Provide an Alternative Date</label>
                 <input type="date" id="res-alt-date" name="alt-date">
+              </div>
+            </div>
+
+            <!-- Service days (recurring maid services only) -->
+            <div id="maid-service-days" class="form-group" style="display:none;">
+              <label>Which day(s) would you like your maid service? <span class="req">*</span></label>
+              <p class="form-hint">Final scheduling will be confirmed based on fairy availability.</p>
+              <div class="checkbox-grid">
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Monday" /> Monday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Tuesday" /> Tuesday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Wednesday" /> Wednesday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Thursday" /> Thursday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Friday" /> Friday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Saturday" /> Saturday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Sunday" /> Sunday</label>
+                <label class="checkbox-label"><input type="checkbox" name="service_days" value="Not applicable" /> Not applicable (full-time fairy request)</label>
               </div>
             </div>
 

@@ -163,8 +163,51 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================
-   MULTI-STEP FORM LOGIC (Smart Booking Form)
+   CONTACT PAGE — Conditional maid service fields
 ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const serviceSelect = document.getElementById('service');
+  if (!serviceSelect) return;
+
+  const recurringServices = [
+    'maid-once-week', 'maid-twice-week', 'maid-thrice-week', 'maid-fulltime'
+  ];
+  const allMaidServices = [
+    'maid-once-off', 'maid-biweekly',
+    'maid-once-week', 'maid-twice-week', 'maid-thrice-week', 'maid-fulltime'
+  ];
+
+  const transportNotice = document.getElementById('transport-notice');
+  const transportField  = document.getElementById('transport-field');
+  const serviceDaysField = document.getElementById('service-days-field');
+  const startDateField  = document.getElementById('start-date-field');
+
+  function show(el) { if (el) el.style.display = ''; }
+  function hide(el) { if (el) el.style.display = 'none'; }
+
+  serviceSelect.addEventListener('change', () => {
+    const val = serviceSelect.value;
+    const isMaid = allMaidServices.includes(val);
+    const isRecurring = recurringServices.includes(val);
+
+    if (isMaid) {
+      show(transportNotice);
+      show(transportField);
+      show(startDateField);
+    } else {
+      hide(transportNotice);
+      hide(transportField);
+      hide(startDateField);
+    }
+
+    if (isRecurring) {
+      show(serviceDaysField);
+    } else {
+      hide(serviceDaysField);
+    }
+  });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const smartForm = document.querySelector('.smart-form');
   if (!smartForm) return; // Only run if smart form exists
@@ -310,6 +353,24 @@ document.addEventListener('DOMContentLoaded', () => {
           fullTimePlacementChoice.style.display = 'none';
         }
       }
+
+      // Maid service info boxes
+      const onceoffInfo   = document.getElementById('maid-onceoff-info');
+      const recurringInfo = document.getElementById('maid-recurring-info');
+      const transportNotice = document.getElementById('maid-transport-notice');
+      const transportField  = document.getElementById('maid-transport-field');
+      const serviceDays     = document.getElementById('maid-service-days');
+
+      const onceoffServices  = ['maid-once-off', 'maid-biweekly'];
+      const recurringServices = ['maid-weekly', 'maid-twice'];
+      const allMaidServices  = [...onceoffServices, ...recurringServices, 'full-time'];
+      const val = serviceSelect.value;
+
+      if (onceoffInfo)    onceoffInfo.style.display   = onceoffServices.includes(val)  ? 'block' : 'none';
+      if (recurringInfo)  recurringInfo.style.display  = recurringServices.includes(val) ? 'block' : 'none';
+      if (transportNotice) transportNotice.style.display = allMaidServices.includes(val) ? 'flex'  : 'none';
+      if (transportField)  transportField.style.display  = allMaidServices.includes(val) ? 'block' : 'none';
+      if (serviceDays)     serviceDays.style.display     = recurringServices.includes(val) ? 'block' : 'none';
 
       // Toggle Step 4 content based on service type
       if (regularCleaningStep4 && fulltimeFairyStep4) {
