@@ -161,3 +161,199 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ============================================================
+   MULTI-STEP FORM LOGIC (Smart Booking Form)
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const smartForm = document.querySelector('.smart-form');
+  if (!smartForm) return; // Only run if smart form exists
+
+  const formSteps = smartForm.querySelectorAll('.form-step');
+  const progressFill = document.getElementById('progressFill');
+  const currentStepText = document.getElementById('currentStep');
+  const totalStepsText = document.getElementById('totalSteps');
+  
+  let currentStep = 1;
+  const totalSteps = formSteps.length;
+
+  // Update total steps text
+  if (totalStepsText) totalStepsText.textContent = totalSteps;
+
+  // Update progress bar and step indicator
+  function updateProgress() {
+    const progress = (currentStep / totalSteps) * 100;
+    if (progressFill) progressFill.style.width = `${progress}%`;
+    if (currentStepText) currentStepText.textContent = `Step ${currentStep}`;
+  }
+
+  // Show specific step
+  function showStep(stepNumber) {
+    formSteps.forEach((step, index) => {
+      if (index + 1 === stepNumber) {
+        step.classList.add('active');
+      } else {
+        step.classList.remove('active');
+      }
+    });
+    currentStep = stepNumber;
+    updateProgress();
+
+    // Scroll to form top
+    smartForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Validate current step
+  function validateStep(stepNumber) {
+    const step = formSteps[stepNumber - 1];
+    const inputs = step.querySelectorAll('input[required], select[required], textarea[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+      // Check if input is visible and required
+      if (input.offsetParent !== null && input.hasAttribute('required')) {
+        if (!input.value.trim()) {
+          isValid = false;
+          input.style.borderColor = '#e74c3c';
+        } else {
+          input.style.borderColor = '';
+        }
+      }
+    });
+
+    // Special validation for checkboxes (pest control types)
+    const pestControlSelect = document.getElementById('res-pest-control');
+    if (pestControlSelect && pestControlSelect.value === 'yes') {
+      const pestCheckboxes = step.querySelectorAll('input[name="pest-types"]:checked');
+      if (pestCheckboxes.length === 0 && stepNumber === 4) {
+        isValid = false;
+        alert('Please select at least one pest type if you require pest control services.');
+      }
+    }
+
+    // Validate terms checkbox on last step
+    const termsCheckbox = document.getElementById('res-terms');
+    if (termsCheckbox && stepNumber === totalSteps && !termsCheckbox.checked) {
+      isValid = false;
+      alert('Please agree to the service terms to proceed.');
+    }
+
+    return isValid;
+  }
+
+  // Next button handlers
+  smartForm.querySelectorAll('.next-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        if (currentStep < totalSteps) {
+          showStep(currentStep + 1);
+        }
+      } else {
+        alert('Please fill in all required fields before continuing.');
+      }
+    });
+  });
+
+  // Previous button handlers
+  smartForm.querySelectorAll('.prev-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        showStep(currentStep - 1);
+      }
+    });
+  });
+
+  // Conditional Logic: Deep Cleaning Info Box
+  const serviceSelect = document.getElementById('res-service');
+  const deepCleaningInfo = document.getElementById('deep-cleaning-info');
+  
+  if (serviceSelect && deepCleaningInfo) {
+    serviceSelect.addEventListener('change', () => {
+      if (serviceSelect.value === 'deep-cleaning') {
+        deepCleaningInfo.style.display = 'block';
+        deepCleaningInfo.style.animation = 'fadeInUp 0.5s ease';
+      } else {
+        deepCleaningInfo.style.display = 'none';
+      }
+    });
+  }
+
+  // Conditional Logic: Pest Control Types
+  const pestControlSelect = document.getElementById('res-pest-control');
+  const pestTypesSection = document.getElementById('pest-types-section');
+  
+  if (pestControlSelect && pestTypesSection) {
+    pestControlSelect.addEventListener('change', () => {
+      if (pestControlSelect.value === 'yes') {
+        pestTypesSection.style.display = 'block';
+        pestTypesSection.style.animation = 'fadeInUp 0.5s ease';
+        
+        // Make pest type checkboxes required
+        pestTypesSection.querySelectorAll('input[name="pest-types"]').forEach(cb => {
+          cb.setAttribute('data-required-group', 'pest-types');
+        });
+      } else {
+        pestTypesSection.style.display = 'none';
+        
+        // Remove required and uncheck all
+        pestTypesSection.querySelectorAll('input[name="pest-types"]').forEach(cb => {
+          cb.checked = false;
+          cb.removeAttribute('data-required-group');
+        });
+      }
+    });
+  }
+
+  // Clear border color on input
+  smartForm.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('input', () => {
+      input.style.borderColor = '';
+    });
+  });
+
+  // Form submission
+  smartForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Validate last step
+    if (!validateStep(totalSteps)) {
+      alert('Please complete all required fields and agree to the terms.');
+      return;
+    }
+
+    // Collect all form data
+    const formData = new FormData(smartForm);
+    const data = {};
+
+    // Convert to object, handling multiple checkboxes
+    for (let [key, value] of formData.entries()) {
+      if (key === 'pest-types') {
+        if (!data[key]) data[key] = [];
+        data[key].push(value);
+      } else {
+        data[key] = value;
+      }
+    }
+
+    console.log('Smart Booking Form Data:', data);
+
+    // Show success message
+    alert('🎉 Thank you for your detailed booking request!\n\nOur Sethakga team will review your information and contact you within 24 hours to confirm your appointment and provide your quotation.\n\nYou will receive a confirmation via WhatsApp and email shortly.');
+
+    // Reset form and go back to step 1
+    smartForm.reset();
+    showStep(1);
+
+    // In production: Send to backend
+    // fetch('/api/bookings/smart', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // }).then(response => response.json()).then(result => {
+    //   console.log('Success:', result);
+    // });
+  });
+
+  // Initialize
+  showStep(1);
+});
