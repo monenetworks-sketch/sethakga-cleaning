@@ -22,23 +22,17 @@
           <div class="logo-icon">
             <img src="images/The Sethakga Group logo.jpeg" alt="Sethakga" class="logo-fairy">
           </div>
-          <div class="logo-text">
-            <div class="logo-name">The Sethakga Group</div>
-          </div>
         </a>
 
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="cleaning.html">Sethakga Cleaning</a></li>
-          <li><a href="hair.html" class="active">Sethakga Hair</a></li>
-          <!-- <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="contact.html">Contact</a></li> -->
+          <li><a href="cleaning.html">Deep Cleaning</a></li>
+          <li><a href="maid.html">Maid Services</a></li>
+          <li><a href="hair.html" class="active">Mobile Braiding</a></li>
+          <li><a href="academy.html">Sethakga Academy</a></li>
+          <li><a href="thushanang.html">Sethakga Thushanang</a></li>
           <li><a href="rewards.html">Rewards</a></li>
-        </ul>
-
-        <a href="contact.html" class="btn btn-primary nav-cta">
-          <i class="fas fa-calendar-check"></i> Book Now
-        </a>
+        </ul>        
 
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span>
@@ -51,13 +45,13 @@
 
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html" class="mobile-link">Home</a>
-    <a href="cleaning.html" class="mobile-link">Sethakga Cleaning</a>
-    <a href="hair.html" class="mobile-link">Sethakga Hair</a>
+    <a href="cleaning.html" class="mobile-link">Deep Cleaning</a>
+    <a href="maid.html" class="mobile-link">Maid Services</a>
+    <a href="hair.html" class="mobile-link">Mobile Braiding</a>
+    <a href="academy.html" class="mobile-link">Sethakga Academy</a>
+    <a href="thushanang.html" class="mobile-link">Sethakga Thushanang</a>
     <a href="rewards.html" class="mobile-link"><i class="fas fa-gift"></i> Rewards</a>
-    <!-- <a href="pricing.html" class="mobile-link">Pricing</a>
-    <a href="contact.html" class="mobile-link">
-      <i class="fas fa-calendar-check"></i> Contact &amp; Book
-    </a> -->
+    <a href="contact.html" class="mobile-link"><i class="fas fa-calendar-check"></i> Book Now</a>
   </div>
 
   <!-- ==================== PAGE HERO ==================== -->
@@ -267,24 +261,419 @@
 
       <!-- CTA -->
       <div style="text-align: center; margin-top: 60px;">
-        <a href="https://wa.me/27729249068?text=Hi%2C%20I'd%20like%20to%20book%20a%20braiding%20appointment" 
-           target="_blank" rel="noopener noreferrer" class="btn btn-hair btn-large">
-          <i class="fab fa-whatsapp"></i> Book via WhatsApp
+        <a href="#hair-booking-section" class="btn btn-hair btn-large scroll-to-form">
+          <i class="fas fa-calendar-check"></i> Book an Appointment
         </a>
-        <a href="pricing.html" class="btn btn-outline-purple btn-large" style="margin-left: 16px;">
-          <i class="fas fa-tag"></i> View Pricing
+        <a href="https://wa.me/27729249068?text=Hi%2C%20I'd%20like%20to%20book%20a%20braiding%20appointment"
+           target="_blank" rel="noopener noreferrer" class="btn btn-outline-purple btn-large" style="margin-left: 16px;">
+          <i class="fab fa-whatsapp"></i> WhatsApp Us
         </a>
       </div>
     </div>
   </section>
 
+  <!-- ==================== HAIR BOOKING FORM ==================== -->
+  <section id="hair-booking-section" style="padding: 100px 0; background: linear-gradient(135deg, rgba(123,63,242,0.04) 0%, rgba(157,111,245,0.03) 100%);">
+    <div class="container">
+      <div class="section-header-branded" style="text-align:center; margin-bottom: 60px;">
+        <span class="section-tag section-tag--hair"><i class="fas fa-calendar-check"></i> Book Now</span>
+        <h2 class="section-title">Book Your <span>Braiding Appointment</span></h2>
+        <p class="section-subtitle">Complete the form below and our stylist will confirm your appointment within 24 hours</p>
+      </div>
+
+      <div class="booking-form-section">
+        <div class="booking-form-header">
+          <h3><i class="fas fa-scissors"></i> Braiding Appointment Request</h3>
+          <p>Tell us about your style needs and we'll match you with the perfect stylist</p>
+        </div>
+
+        <form class="booking-form smart-form" id="hairBookingForm" data-form-type="hair">
+
+          <!-- Progress Indicator -->
+          <div class="form-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+              <span id="currentStep">Step 1</span> of <span id="totalSteps">6</span>
+            </div>
+          </div>
+
+          <!-- STEP 1: Contact Details -->
+          <div class="form-step active" data-step="1">
+            <h4 class="step-title">Contact Information</h4>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hair-name">Full Name *</label>
+                <input type="text" id="hair-name" name="name" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="hair-email">Email Address *</label>
+                <input type="email" id="hair-email" name="email" required placeholder="your.email@example.com">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hair-phone">Contact Number *</label>
+                <input type="tel" id="hair-phone" name="phone" required placeholder="e.g. 063 500 2390">
+              </div>
+              <div class="form-group">
+                <label for="hair-whatsapp">WhatsApp Number *</label>
+                <input type="tel" id="hair-whatsapp" name="whatsapp" required placeholder="e.g. 063 500 2390">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-area">Your Area / Suburb *</label>
+              <input type="text" id="hair-area" name="area" required placeholder="e.g. Midrand, Sandton, Pretoria East">
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-purple" disabled>
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-hair next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Service Selection -->
+          <div class="form-step" data-step="2">
+            <h4 class="step-title">Hair Service Selection</h4>
+
+            <div class="form-group">
+              <label for="hair-service">Which Service Do You Need? *</label>
+              <select id="hair-service" name="service" required>
+                <option value="">Select a service</option>
+                <optgroup label="Braiding &amp; Protective Styles">
+                  <option value="box-braids">Box Braids</option>
+                  <option value="cornrows">Cornrows</option>
+                  <option value="senegalese-twists">Senegalese Twists</option>
+                  <option value="havana-twists">Havana Twists</option>
+                  <option value="marley-twists">Marley Twists</option>
+                  <option value="passion-twists">Passion Twists / Spring Twists</option>
+                  <option value="childrens-braids">Children's Braids &amp; Styles</option>
+                </optgroup>
+                <optgroup label="Weaves &amp; Installations">
+                  <option value="weave-install">Weave Installation (Sew-In)</option>
+                  <option value="wig-install">Wig Installation &amp; Customization</option>
+                  <option value="closure-frontal">Closure / Frontal Installation</option>
+                  <option value="weave-maintenance">Weave Maintenance &amp; Wash</option>
+                </optgroup>
+                <optgroup label="Natural Hair Care">
+                  <option value="natural-wash">Natural Hair Wash &amp; Deep Condition</option>
+                  <option value="natural-styling">Natural Hair Styling</option>
+                  <option value="hair-treatment">Hair Treatment &amp; Trimming</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <!-- Info boxes per service -->
+            <div id="box-braids-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-grip-lines-vertical"></i> Box Braids</h5>
+              <ul>
+                <li>Small, medium, or jumbo thickness available — stylist advises based on your hair</li>
+                <li>Short, medium, or long length options</li>
+                <li>Extensions available — bring your own or we can supply (quoted separately)</li>
+                <li>Lasts 6–8 weeks with proper care</li>
+                <li>Pricing confirmed before appointment based on size and length</li>
+              </ul>
+            </div>
+
+            <div id="cornrows-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-wave-square"></i> Cornrows</h5>
+              <ul>
+                <li>Braids plaited close to the scalp — straight-back, zig-zag, or curved patterns</li>
+                <li>Feed-in method available for a natural look</li>
+                <li>Great for adults and children</li>
+                <li>Lasts 2–4 weeks</li>
+              </ul>
+            </div>
+
+            <div id="twists-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-rotate"></i> Twists</h5>
+              <ul>
+                <li>Senegalese (sleek &amp; defined), Havana (chunky &amp; voluminous), or Marley (natural texture)</li>
+                <li>Elegant two-strand twists using premium quality extensions</li>
+                <li>Lasts 4–8 weeks — extensions available or bring your own</li>
+              </ul>
+            </div>
+
+            <div id="passion-twists-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-wand-magic-sparkles"></i> Passion Twists / Spring Twists</h5>
+              <ul>
+                <li>Trendy bohemian style — water wave or curly spring finish</li>
+                <li>Lightweight and comfortable</li>
+                <li>Lasts 6–8 weeks — extensions available or bring your own</li>
+              </ul>
+            </div>
+
+            <div id="weave-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-book-open"></i> Weave Installation (Sew-In)</h5>
+              <ul>
+                <li>Full or partial sew-in — all hair textures accepted</li>
+                <li>Leave-out, closure, or frontal options available</li>
+                <li>Bring your own bundles or we supply premium quality hair (quoted separately)</li>
+              </ul>
+            </div>
+
+            <div id="wig-install-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-head-side-virus"></i> Wig Installation &amp; Customization</h5>
+              <ul>
+                <li>Hairline customization, knot bleaching, and plucking for a natural finish</li>
+                <li>Lace frontal or full lace wigs — bring your wig</li>
+                <li>Secure installation guaranteed</li>
+              </ul>
+            </div>
+
+            <div id="closure-frontal-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-circle-half-stroke"></i> Closure / Frontal Installation</h5>
+              <ul>
+                <li>4x4, 5x5, 6x6 closures or 13x4 / 13x6 frontals</li>
+                <li>Bleached knots and plucking for a seamless, natural look</li>
+                <li>Versatile parting options</li>
+              </ul>
+            </div>
+
+            <div id="natural-hair-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-leaf"></i> Natural Hair Care &amp; Styling</h5>
+              <ul>
+                <li>Gentle deep conditioning, wash &amp; style — restores moisture, shine, and health</li>
+                <li>Twist-outs, braid-outs, bantu knots, wash-and-gos, and more</li>
+                <li>Hair treatment and professional trimming available</li>
+              </ul>
+            </div>
+
+            <div id="childrens-braids-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-child"></i> Children's Braids &amp; Styles</h5>
+              <ul>
+                <li>Gentle, age-appropriate braiding and styling for kids</li>
+                <li>Patient and caring stylists experienced with children</li>
+                <li>Cornrows, box braids, or protective styles — parent present during service</li>
+              </ul>
+            </div>
+
+            <div id="weave-maintenance-info" class="service-info-box" style="display:none;">
+              <h5><i class="fas fa-wrench"></i> Weave Maintenance &amp; Wash</h5>
+              <ul>
+                <li>Deep wash, condition, blow-dry, and style</li>
+                <li>Extends the life of your weave and keeps it looking fresh</li>
+              </ul>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-purple prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-hair next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Hair & Style Preferences -->
+          <div class="form-step" data-step="3">
+            <h4 class="step-title">Hair &amp; Style Preferences</h4>
+            <p class="step-description">Help our stylist prepare the right extensions, tools, and techniques for your appointment.</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hair-type">Your Current Hair Type *</label>
+                <select id="hair-type" name="hair-type" required>
+                  <option value="">Select hair type</option>
+                  <option value="natural">Natural (unrelaxed)</option>
+                  <option value="relaxed">Relaxed / Permed</option>
+                  <option value="colored">Colored / Bleached</option>
+                  <option value="fine">Fine / Thin</option>
+                  <option value="thick">Thick / Coarse</option>
+                  <option value="transitioning">Transitioning</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="hair-length">Your Current Hair Length *</label>
+                <select id="hair-length" name="hair-length" required>
+                  <option value="">Select length</option>
+                  <option value="short">Short (TWA / Ear-length)</option>
+                  <option value="medium-short">Medium-Short (Neck-length)</option>
+                  <option value="medium">Medium (Shoulder-length)</option>
+                  <option value="long">Long (Below shoulder)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-desired-length">Desired Style Length</label>
+              <select id="hair-desired-length" name="desired-length">
+                <option value="">Select desired length</option>
+                <option value="short">Short</option>
+                <option value="medium">Medium (shoulder)</option>
+                <option value="long">Long (mid-back)</option>
+                <option value="extra-long">Extra Long (waist)</option>
+                <option value="help-decide">Not sure — stylist to advise</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-extensions">Extensions / Hair *</label>
+              <select id="hair-extensions" name="extensions" required>
+                <option value="">Select option</option>
+                <option value="client-supplied">I will supply my own extensions</option>
+                <option value="sethakga-supplied">Please supply extension hair (will be quoted)</option>
+                <option value="no-extensions">No extensions needed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-color-pref">Extension Color / Tone Preference</label>
+              <input type="text" id="hair-color-pref" name="color-preference" placeholder="e.g. 1B (off-black), dark brown, burgundy, ombre, same as my hair">
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-purple prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-hair next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Appointment Location -->
+          <div class="form-step" data-step="4">
+            <h4 class="step-title">Appointment Location</h4>
+            <p class="step-description">Our stylist comes to you — let us know where you'd like your appointment.</p>
+
+            <div class="form-group">
+              <label>Appointment Type *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="appointment-type" value="home" required>
+                  <span><i class="fas fa-house" style="margin-right:6px; color:var(--purple);"></i> At My Home</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="appointment-type" value="office">
+                  <span><i class="fas fa-briefcase" style="margin-right:6px; color:var(--purple);"></i> At My Office / Workplace</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="appointment-type" value="event">
+                  <span><i class="fas fa-people-group" style="margin-right:6px; color:var(--purple);"></i> Event / Party</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-appt-address">Full Appointment Address *</label>
+              <textarea id="hair-appt-address" name="appointment-address" required rows="2" placeholder="Street address, suburb, city, postal code"></textarea>
+            </div>
+
+            <div id="event-guests-group" class="form-group" style="display:none;">
+              <label for="hair-event-guests">Number of People Getting Their Hair Done at This Event *</label>
+              <input type="number" id="hair-event-guests" name="event-guests" min="1" max="50" placeholder="e.g. 4">
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-purple prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-hair next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 5: Scheduling -->
+          <div class="form-step" data-step="5">
+            <h4 class="step-title">Scheduling</h4>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hair-date">Preferred Appointment Date *</label>
+                <input type="date" id="hair-date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="hair-alt-date">Alternative Date</label>
+                <input type="date" id="hair-alt-date" name="alt-date">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-time">Preferred Time *</label>
+              <select id="hair-time" name="time" required>
+                <option value="">Select preferred time</option>
+                <option value="morning">Morning (8:00 – 11:00)</option>
+                <option value="midday">Midday (11:00 – 14:00)</option>
+                <option value="afternoon">Afternoon (14:00 – 17:00)</option>
+                <option value="flexible">Flexible — any time</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hair-notes">Style Notes or References</label>
+              <textarea id="hair-notes" name="notes" rows="4" placeholder="Describe your desired style, any reference photos, specific requests, or colour preferences in more detail..."></textarea>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-purple prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn btn-hair next-step">
+                Next <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 6: Billing & Confirmation -->
+          <div class="form-step" data-step="6">
+            <h4 class="step-title">Billing &amp; Confirmation</h4>
+            <p class="step-description">Please confirm billing responsibility and agree to our service terms.</p>
+
+            <div class="form-group">
+              <label>Will You Be Responsible for the Billing and Payments? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="billing" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="billing" value="no" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 32px;">
+              <label class="checkbox-label disclaimer-check">
+                <input type="checkbox" name="terms" id="res-terms" required>
+                <span>I confirm that the information provided is correct and I consent to The Sethakga Group processing my request. I have read, understood, and agree to The Sethakga Group service terms as per my request. *</span>
+              </label>
+            </div>
+
+            <div class="form-navigation">
+              <button type="button" class="btn btn-outline-purple prev-step">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="submit" class="btn btn-hair btn-large">
+                <i class="fas fa-paper-plane"></i> Submit Appointment Request
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== FOOTER ==================== -->
+
   <footer>
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="fb-name">The Sethakga Group</div>
-          <div class="fb-sub">Cleaning & Braiding Services</div>
+          <div class="fb-sub">Cleaning &amp; Braiding Services</div>
           <p>Transforming spaces and crowns across Gauteng with professional
              cleaning and mobile braiding services since 2019.</p>
           <div class="social-links">
@@ -312,12 +701,13 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="hair.html">Box Braids</a></li>
-            <li><a href="hair.html">Cornrows</a></li>
-            <li><a href="hair.html">Twists</a></li>
-            <li><a href="hair.html">Weave Installation</a></li>
-            <li><a href="hair.html">Wig Installation</a></li>
-            <li><a href="pricing.html">View Pricing</a></li>
+            <li><a href="cleaning.html">Deep Cleaning</a></li>
+            <li><a href="maid.html">Maid Services</a></li>
+            <li><a href="hair.html">Mobile Braiding</a></li>
+            <li><a href="cleaning.html">Carpet &amp; Upholstery</a></li>
+            <li><a href="cleaning.html">Pest Control</a></li>
+            <li><a href="academy.html">Sethakga Academy</a></li>
+            <li><a href="thushanang.html">Sethakga Thushanang</a></li>
           </ul>
         </div>
 
@@ -325,9 +715,8 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="cleaning.html">Sethakga Cleaning</a></li>
-            <li><a href="hair.html">Sethakga Hair</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="academy.html">Sethakga Academy</a></li>
+            <li><a href="thushanang.html">Sethakga Thushanang</a></li>
             <li><a href="rewards.html">Rewards</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
@@ -340,10 +729,7 @@
           Midrand, Gauteng
         </div>
         <div>
-          Founded by <span>Kelotilwe Roberta Legwabe</span> &middot; Est. 2019
-        </div>
-        <div class="footer-credit">
-          Designed &amp; Developed by <a href="https://www.mplai.co.za" target="_blank" rel="noopener noreferrer">MPL AI</a>
+          Designed &amp; Developed by <a href="https://www.mplai.co.za" target="_blank" rel="noopener noreferrer"><span>MPL AI</span></a>
         </div>
       </div>
     </div>
@@ -357,10 +743,10 @@
 
   <!-- Back to Top -->
   <button id="back-top" aria-label="Back to top">
-    <i class="fas fa-arrow-up"></i>
+    <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- Scripts -->
+  <!-- ==================== JAVASCRIPT ==================== -->
   <script src="main.js"></script>
 </body>
 </html>

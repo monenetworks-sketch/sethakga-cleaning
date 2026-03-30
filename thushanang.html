@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sethakga Thushanang | Giving Back — Hair, Cleaning &amp; Support for Underprivileged Youth</title>
+  <meta name="description" content="Sethakga Thushanang is our community giving-back programme — providing free or subsidised hair braiding, cleaning services, and essential support to underprivileged youth and families across Gauteng." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ---- Thushanang colour tokens ---- */
+    :root {
+      --thush:       #1A7A4A;
+      --thush-dark:  #155C38;
+      --thush-light: #27AE60;
+      --thush-pale:  #EAFAF1;
+    }
+
+    .section-tag--thush {
+      background: var(--thush-pale);
+      color: var(--thush-dark);
+      border: 1px solid rgba(26,122,74,0.25);
+    }
+
+    .btn-thush {
+      background: linear-gradient(135deg, var(--thush-dark) 0%, var(--thush-light) 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 18px rgba(26,122,74,0.32);
+    }
+    .btn-thush:hover {
+      background: linear-gradient(135deg, var(--thush-light) 0%, var(--thush-dark) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26,122,74,0.42);
+    }
+
+    .impact-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid rgba(26,122,74,0.15);
+      padding: 36px 28px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .impact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(26,122,74,0.16);
+      border-color: rgba(26,122,74,0.32);
+    }
+    .impact-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--thush-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      color: var(--thush-dark);
+      margin: 0 auto 20px;
+    }
+    .impact-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .impact-card p {
+      font-size: 0.87rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .heart-strip {
+      background: linear-gradient(135deg, #155C38 0%, #1A7A4A 50%, #27AE60 100%);
+      padding: 72px 0;
+      text-align: center;
+      color: #fff;
+    }
+    .heart-strip h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .heart-strip p {
+      font-size: 1.05rem;
+      max-width: 660px;
+      margin: 0 auto 36px;
+      opacity: 0.95;
+      line-height: 1.75;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .thush-form-wrap {
+      background: var(--white);
+      border-radius: 20px;
+      border: 1px solid rgba(26,122,74,0.20);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      padding: 48px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .donate-card {
+      background: linear-gradient(135deg, var(--thush-pale) 0%, #fff 100%);
+      border: 2px solid rgba(26,122,74,0.22);
+      border-radius: 16px;
+      padding: 36px;
+      text-align: center;
+    }
+    .donate-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--thush-dark);
+      margin-bottom: 12px;
+    }
+    .donate-card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .thush-form-wrap { padding: 28px 20px; }
+      .support-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav id="navbar" class="nav-solid">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon">
+            <img src="images/The Sethakga Group logo.jpeg" alt="Sethakga" class="logo-fairy">
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cleaning.html">Deep Cleaning</a></li>
+          <li><a href="maid.html">Maid Services</a></li>
+          <li><a href="hair.html">Mobile Braiding</a></li>
+          <li><a href="academy.html">Sethakga Academy</a></li>
+          <li><a href="thushanang.html" class="active">Sethakga Thushanang</a></li>
+          <li><a href="rewards.html">Rewards</a></li>
+        </ul>        
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="cleaning.html" class="mobile-link">Deep Cleaning</a>
+    <a href="maid.html" class="mobile-link">Maid Services</a>
+    <a href="hair.html" class="mobile-link">Mobile Braiding</a>
+    <a href="academy.html" class="mobile-link">Sethakga Academy</a>
+    <a href="thushanang.html" class="mobile-link">Sethakga Thushanang</a>
+    <a href="rewards.html" class="mobile-link"><i class="fas fa-gift"></i> Rewards</a>
+    <a href="contact.html" class="mobile-link"><i class="fas fa-calendar-check"></i> Book Now</a>
+  </div>
+
+  <!-- ==================== PAGE HERO ==================== -->
+  <section class="page-hero" style="background: linear-gradient(135deg, #0D3D24 0%, #155C38 40%, #1A7A4A 100%);">
+    <div class="container">
+      <span class="section-tag" style="background:rgba(255,255,255,0.16); color:#fff; border:1px solid rgba(255,255,255,0.32);">
+        <i class="fas fa-heart"></i> Community Division
+      </span>
+      <h1 class="page-hero-title">Sethakga <span style="color: #7DCEA0;">Thushanang</span></h1>
+      <p class="page-hero-desc">
+        <em>"Thushanang"</em> — from Sesotho, meaning "help one another." Our community giving-back
+        programme provides free and subsidised hair braiding, deep cleaning, and essential support to
+        underprivileged youth and families across Gauteng.
+      </p>
+      <div class="breadcrumb">
+        <a href="index.html" style="color:rgba(255,255,255,0.70);">Home</a>
+        <span style="color:rgba(255,255,255,0.45);">/</span>
+        <span>Sethakga Thushanang</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRUST BAR ==================== -->
+  <div id="trust-bar">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item"><i class="fas fa-heart"></i> Community-First</div>
+        <div class="trust-item"><i class="fas fa-hands-holding-heart"></i> Dignity &amp; Respect</div>
+        <div class="trust-item"><i class="fas fa-children"></i> Youth-Focused</div>
+        <div class="trust-item"><i class="fas fa-seedling"></i> Building Futures</div>
+        <div class="trust-item"><i class="fas fa-people-group"></i> Gauteng-Wide</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== OUR STORY ==================== -->
+  <section style="padding: 100px 0; background: var(--white);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+        <div>
+          <span class="section-tag section-tag--thush" style="margin-bottom:20px; display:inline-block;">
+            <i class="fas fa-quote-left"></i> Our Heart
+          </span>
+          <h2 class="section-title" style="margin-bottom: 24px;">Where It All <span style="color:var(--thush-dark);">Began</span></h2>
+          <p style="font-size:1rem; color:#555; line-height:1.85; margin-bottom:20px;">
+            Sethakga was founded by a woman who grew up understanding what it means to go without.
+            From the very beginning, giving back was never an afterthought — it was part of the DNA.
+          </p>
+          <p style="font-size:1rem; color:#555; line-height:1.85; margin-bottom:20px;">
+            <strong>Thushanang</strong> exists because we know that a clean home is a dignified home.
+            A neat hairstyle is confidence. A child who is cared for shows up differently to school,
+            to life, to their own future.
+          </p>
+          <p style="font-size:1rem; color:#555; line-height:1.85;">
+            We partner with schools, community centres, and NGOs to identify families and young people
+            who need a hand — not charity, but a genuine act of community care.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div style="background:var(--thush-pale); border-radius:16px; padding:32px 24px; text-align:center;">
+            <div style="font-size:2.8rem; font-weight:700; color:var(--thush-dark); font-family:'Dancing Script',cursive;">100+</div>
+            <div style="font-size:0.85rem; color:#555; margin-top:6px;">Families helped to date</div>
+          </div>
+          <div style="background:#FFF9E6; border-radius:16px; padding:32px 24px; text-align:center;">
+            <div style="font-size:2.8rem; font-weight:700; color:var(--gold-dark); font-family:'Dancing Script',cursive;">Free</div>
+            <div style="font-size:0.85rem; color:#555; margin-top:6px;">Hair days hosted each quarter</div>
+          </div>
+          <div style="background:var(--pink-pale); border-radius:16px; padding:32px 24px; text-align:center;">
+            <div style="font-size:2.8rem; font-weight:700; color:var(--pink); font-family:'Dancing Script',cursive;">2019</div>
+            <div style="font-size:0.85rem; color:#555; margin-top:6px;">Giving back since founding</div>
+          </div>
+          <div style="background:var(--purple-pale); border-radius:16px; padding:32px 24px; text-align:center;">
+            <div style="font-size:2.8rem; font-weight:700; color:var(--purple); font-family:'Dancing Script',cursive;">GTG</div>
+            <div style="font-size:0.85rem; color:#555; margin-top:6px;">Across Gauteng</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HEART STRIP ==================== -->
+  <div class="heart-strip">
+    <div class="container">
+      <h2><i class="fas fa-heart" style="margin-right:12px; font-size:1.8rem; vertical-align:middle;"></i> Thushanang — We Help One Another</h2>
+      <p>
+        Every Sethakga service booking contributes to the Thushanang fund. A portion of every
+        deep cleaning, maid booking, and braiding appointment goes toward supporting a family
+        or young person in need. When you book with us, you give back too.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px;">
+        <div style="background:rgba(255,255,255,0.16); backdrop-filter:blur(8px); border-radius:10px; padding:16px 24px; font-size:0.92rem; font-weight:600;"><i class="fas fa-scissors" style="margin-right:8px;"></i> Free Hair Braiding Days</div>
+        <div style="background:rgba(255,255,255,0.16); backdrop-filter:blur(8px); border-radius:10px; padding:16px 24px; font-size:0.92rem; font-weight:600;"><i class="fas fa-broom" style="margin-right:8px;"></i> Subsidised Deep Cleaning</div>
+        <div style="background:rgba(255,255,255,0.16); backdrop-filter:blur(8px); border-radius:10px; padding:16px 24px; font-size:0.92rem; font-weight:600;"><i class="fas fa-graduation-cap" style="margin-right:8px;"></i> Free Academy Places</div>
+        <div style="background:rgba(255,255,255,0.16); backdrop-filter:blur(8px); border-radius:10px; padding:16px 24px; font-size:0.92rem; font-weight:600;"><i class="fas fa-box-open" style="margin-right:8px;"></i> Care Packages &amp; Supplies</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== WHAT WE OFFER ==================== -->
+  <section style="padding: 100px 0; background: var(--grey-light);">
+    <div class="container">
+      <div class="section-header-branded" style="text-align:center;">
+        <span class="section-tag section-tag--thush"><i class="fas fa-hands-helping"></i> How We Help</span>
+        <h2 class="section-title">What <span style="color:var(--thush-dark);">Thushanang</span> Provides</h2>
+        <p class="section-subtitle">
+          Practical, dignified support — not just once-off gestures, but meaningful recurring care
+        </p>
+      </div>
+
+      <div class="support-grid">
+
+        <div class="impact-card fade-up">
+          <div class="impact-icon"><i class="fas fa-scissors"></i></div>
+          <h3>Free Hair Braiding Events</h3>
+          <p>Quarterly free hair braiding days for underprivileged girls and women. Professional Sethakga stylists donate their time and skills to make every person feel beautiful and valued.</p>
+        </div>
+
+        <div class="impact-card fade-up">
+          <div class="impact-icon"><i class="fas fa-broom"></i></div>
+          <h3>Subsidised Deep Cleaning</h3>
+          <p>Families living in difficult conditions — overcrowded homes, post-flooding, or post-illness environments — receive deeply subsidised or free deep cleaning from the Sethakga team.</p>
+        </div>
+
+        <div class="impact-card fade-up">
+          <div class="impact-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Free Academy Bursaries</h3>
+          <p>Qualifying youth from under-resourced backgrounds receive fully sponsored places on Sethakga Academy courses — covering the full cost of training and materials.</p>
+        </div>
+
+        <div class="impact-card fade-up">
+          <div class="impact-icon"><i class="fas fa-heart"></i></div>
+          <h3>Back-to-School Support</h3>
+          <p>Each year, Sethakga supports learners returning to school with hair braiding, uniforms where possible, stationery, and hygiene packs — helping children start the year with confidence.</p>
+        </div>
+
+        <div class="impact-card fade-up">
+          <div class="impact-icon"><i class="fas fa-box-open"></i></div>
+          <h3>Hygiene &amp; Care Packages</h3>
+          <p>Essential cleaning supplies and hygiene products distributed to families who cannot afford to maintain clean and safe living environments for their children.</p>
+        </div>
+
+        <div class="impact-card fade-up">
+          <div class="impact-icon"><i class="fas fa-handshake"></i></div>
+          <h3>Community Partnerships</h3>
+          <p>We partner with schools, shelters, NGOs, and churches to identify and reach those most in need — ensuring support goes where it's truly needed, with dignity at the centre.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW TO GET HELP ==================== -->
+  <section style="padding: 100px 0; background: var(--white);">
+    <div class="container">
+      <div class="section-header-branded" style="text-align:center;">
+        <span class="section-tag section-tag--thush"><i class="fas fa-hand-holding-heart"></i> Need Support?</span>
+        <h2 class="section-title">How to <span style="color:var(--thush-dark);">Request Help</span></h2>
+        <p class="section-subtitle">If you or someone you know needs support — you are welcome to reach out. No judgement, only care.</p>
+      </div>
+
+      <!-- Process steps -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin: 64px 0 80px;">
+        <div style="text-align:center; padding: 32px 20px;">
+          <div style="width:56px; height:56px; background:linear-gradient(135deg,#155C38,#27AE60); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; margin:0 auto 20px; font-weight:700;">1</div>
+          <h4 style="font-weight:700; font-size:0.97rem; margin-bottom:8px; color:var(--dark);">Submit a Request</h4>
+          <p style="font-size:0.85rem; color:#666; line-height:1.65;">Fill in the form below to let us know how we can help. All requests are treated with complete confidentiality.</p>
+        </div>
+        <div style="text-align:center; padding: 32px 20px;">
+          <div style="width:56px; height:56px; background:linear-gradient(135deg,#155C38,#27AE60); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; margin:0 auto 20px; font-weight:700;">2</div>
+          <h4 style="font-weight:700; font-size:0.97rem; margin-bottom:8px; color:var(--dark);">Our Team Reviews</h4>
+          <p style="font-size:0.85rem; color:#666; line-height:1.65;">The Sethakga Thushanang team reviews each request carefully and determines how we can best assist based on available resources.</p>
+        </div>
+        <div style="text-align:center; padding: 32px 20px;">
+          <div style="width:56px; height:56px; background:linear-gradient(135deg,#155C38,#27AE60); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; margin:0 auto 20px; font-weight:700;">3</div>
+          <h4 style="font-weight:700; font-size:0.97rem; margin-bottom:8px; color:var(--dark);">We Make Contact</h4>
+          <p style="font-size:0.85rem; color:#666; line-height:1.65;">We reach out within 5 working days. Where possible we schedule a visit or event to provide direct support.</p>
+        </div>
+        <div style="text-align:center; padding: 32px 20px;">
+          <div style="width:56px; height:56px; background:linear-gradient(135deg,#155C38,#27AE60); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#fff; margin:0 auto 20px; font-weight:700;">4</div>
+          <h4 style="font-weight:700; font-size:0.97rem; margin-bottom:8px; color:var(--dark);">Help Is Delivered</h4>
+          <p style="font-size:0.85rem; color:#666; line-height:1.65;">Services and support are delivered with care and respect — always focused on dignity, not dependency.</p>
+        </div>
+      </div>
+
+      <!-- Two-column: Request form + Support us -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+
+        <!-- Support request form -->
+        <div class="thush-form-wrap" style="max-width:100%; padding:36px;">
+          <h3 style="font-size:1.1rem; font-weight:700; color:var(--thush-dark); margin-bottom:6px;"><i class="fas fa-hand-holding-heart" style="margin-right:8px;"></i> Request Community Support</h3>
+          <p style="font-size:0.85rem; color:#666; margin-bottom:28px;">For individuals, families, or organisations applying for Thushanang support.</p>
+
+          <form id="thushanangForm" class="booking-form" data-form-type="thushanang">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="thu-name">Full Name *</label>
+                <input type="text" id="thu-name" name="name" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="thu-phone">Contact Number *</label>
+                <input type="tel" id="thu-phone" name="phone" required placeholder="e.g. 063 500 2390">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="thu-area">Area / Suburb *</label>
+              <input type="text" id="thu-area" name="area" required placeholder="e.g. Diepsloot, Alexandra, Soweto">
+            </div>
+
+            <div class="form-group">
+              <label for="thu-request">What Support Are You Requesting? *</label>
+              <select id="thu-request" name="request-type" required>
+                <option value="">Select support type</option>
+                <option value="hair-braiding">Free Hair Braiding (for youth / girls)</option>
+                <option value="deep-cleaning">Subsidised Deep Cleaning</option>
+                <option value="academy-bursary">Free Academy Training Place</option>
+                <option value="back-to-school">Back-to-School Support</option>
+                <option value="hygiene-pack">Hygiene &amp; Care Package</option>
+                <option value="community-event">Community / School Event Visit</option>
+                <option value="other">Other — Please describe below</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="thu-detail">Tell Us About Your Situation *</label>
+              <textarea id="thu-detail" name="detail" required rows="4" placeholder="Please share some background about who needs help and what the circumstances are. All information is kept strictly confidential."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="thu-people">How Many People Would Benefit? *</label>
+              <input type="number" id="thu-people" name="people-count" required min="1" placeholder="e.g. 1, 5, 30 (for a school group)">
+            </div>
+
+            <div class="form-group" style="margin-top: 24px;">
+              <label class="checkbox-label disclaimer-check">
+                <input type="checkbox" name="terms" id="thu-terms" required>
+                <span>I confirm that the information provided is genuine and consent to The Sethakga Group contacting me to discuss this request. *</span>
+              </label>
+            </div>
+
+            <div style="text-align:center; margin-top: 28px;">
+              <button type="submit" class="btn btn-thush btn-large">
+                <i class="fas fa-paper-plane"></i> Submit Support Request
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Partner / Donate / Volunteer -->
+        <div style="display:flex; flex-direction:column; gap:24px;">
+
+          <div class="donate-card">
+            <div style="font-size:2.2rem; color:var(--thush-dark); margin-bottom:16px;"><i class="fas fa-handshake-angle"></i></div>
+            <h3>Partner With Us</h3>
+            <p>Are you a school, NGO, community centre, or business that wants to bring Thushanang to your community? We welcome partnerships. Let's work together to create impact at scale.</p>
+            <a href="mailto:Admin@sethakga.co.za?subject=Thushanang%20Partnership%20Enquiry" class="btn btn-thush">
+              <i class="fas fa-envelope"></i> Email Us to Partner
+            </a>
+          </div>
+
+          <div class="donate-card" style="background: linear-gradient(135deg, #FFF9E6 0%, #fff 100%); border-color: rgba(212,175,55,0.25);">
+            <div style="font-size:2.2rem; color:var(--gold-dark); margin-bottom:16px;"><i class="fas fa-heart"></i></div>
+            <h3 style="color:var(--gold-dark);">Support the Cause</h3>
+            <p>Want to sponsor a free hair day, donate cleaning supplies, or contribute to the Thushanang fund? Every contribution — big or small — directly helps a child or family.</p>
+            <a href="https://wa.me/27729249068?text=Hi%2C%20I'd%20like%20to%20support%20Sethakga%20Thushanang" target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold">
+              <i class="fab fa-whatsapp"></i> WhatsApp to Contribute
+            </a>
+          </div>
+
+          <div class="donate-card" style="background: linear-gradient(135deg, var(--purple-pale) 0%, #fff 100%); border-color: rgba(123,63,242,0.20);">
+            <div style="font-size:2.2rem; color:var(--purple); margin-bottom:16px;"><i class="fas fa-person-digging"></i></div>
+            <h3 style="color:var(--purple);">Volunteer Your Skills</h3>
+            <p>Are you a trained hairstylist, cleaner, teacher, or any skilled professional willing to give a few hours? Volunteer with Thushanang and make a real difference in your community.</p>
+            <a href="mailto:Admin@sethakga.co.za?subject=Thushanang%20Volunteer%20Enquiry" class="btn btn-outline-purple">
+              <i class="fas fa-envelope"></i> Register as Volunteer
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="fb-name">The Sethakga Group</div>
+          <div class="fb-sub">Cleaning &amp; Braiding Services</div>
+          <p>Transforming spaces and crowns across Gauteng with professional
+             cleaning and mobile braiding services since 2019.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/sethakga.cleaning.company" target="_blank" rel="noopener noreferrer"
+               class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/sethakga.cleaning.company" target="_blank" rel="noopener noreferrer"
+               class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/27729249068" target="_blank" rel="noopener noreferrer"
+               class="social-link" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="tel:0106345557" class="social-link" aria-label="Phone">
+              <i class="fas fa-phone"></i>
+            </a>
+            <a href="mailto:Admin@sethakga.co.za" class="social-link" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="cleaning.html">Deep Cleaning</a></li>
+            <li><a href="maid.html">Maid Services</a></li>
+            <li><a href="hair.html">Mobile Braiding</a></li>
+            <li><a href="cleaning.html">Carpet &amp; Upholstery</a></li>
+            <li><a href="cleaning.html">Pest Control</a></li>
+            <li><a href="academy.html">Sethakga Academy</a></li>
+            <li><a href="thushanang.html">Sethakga Thushanang</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="academy.html">Sethakga Academy</a></li>
+            <li><a href="thushanang.html">Sethakga Thushanang</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <span>The Sethakga Group</span> &middot; All rights reserved &middot;
+          Midrand, Gauteng
+        </div>
+        <div>
+          Designed &amp; Developed by <a href="https://www.mplai.co.za" target="_blank" rel="noopener noreferrer"><span>MPL AI</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/27729249068" target="_blank" rel="noopener noreferrer"
+     class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top -->
+  <button id="back-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script src="main.js"></script>
+</body>
+</html>

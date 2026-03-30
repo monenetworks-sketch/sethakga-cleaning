@@ -2,6 +2,11 @@
    SETHAKGA GROUP - Main JavaScript
 ============================================================ */
 
+// ---- Google Sheets + Email Integration ----
+// 1. Follow setup steps in apps-script.gs
+// 2. Paste your deployed Web App URL here:
+const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
 document.addEventListener('DOMContentLoaded', () => {
   /* ---- Navbar scroll ---- */
   const navbar = document.getElementById('navbar');
@@ -41,16 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---- Intersection Observer for fade-up ---- */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.12 });
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
 
 /* ============================================================
@@ -115,52 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Handle form submissions
-  const residentialForm = document.getElementById('residentialBookingForm');
-  const commercialForm = document.getElementById('commercialBookingForm');
-
-  if (residentialForm) {
-    residentialForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Get form data
-      const formData = new FormData(residentialForm);
-      const data = Object.fromEntries(formData.entries());
-      
-      console.log('Residential Booking:', data);
-      
-      // Show success message
-      alert('Thank you for your booking request! We will contact you within 24 hours to confirm your appointment.');
-      
-      // Reset form
-      residentialForm.reset();
-      
-      // In production, send to backend or email service
-      // Example: fetch('/api/bookings/residential', { method: 'POST', body: JSON.stringify(data) })
-    });
-  }
-
-  if (commercialForm) {
-    commercialForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      // Get form data
-      const formData = new FormData(commercialForm);
-      const data = Object.fromEntries(formData.entries());
-      
-      console.log('Commercial Booking:', data);
-      
-      // Show success message
-      alert('Thank you for your quote request! Our commercial team will contact you within 24 hours with a customized quote.');
-      
-      // Reset form
-      commercialForm.reset();
-      
-      // In production, send to backend or email service
-      // Example: fetch('/api/bookings/commercial', { method: 'POST', body: JSON.stringify(data) })
-    });
-  }
 });
+
 
 /* ============================================================
    COMMERCIAL FORM — Multi-step + Conditional Logic
@@ -286,19 +238,34 @@ document.addEventListener('DOMContentLoaded', () => {
     inp.addEventListener('input', () => { inp.style.borderColor = ''; });
   });
 
-  // Submission
+  // Submission — sends to Google Sheets + email
   comForm.addEventListener('submit', e => {
     e.preventDefault();
     if (!comValidate(comTotalNum)) return;
-    const data = {};
-    for (let [k, v] of new FormData(comForm).entries()) {
-      data[k] = data[k] ? [].concat(data[k], v) : v;
+
+    const params = new URLSearchParams();
+    params.append('formType', 'commercial');
+    for (const [k, v] of new FormData(comForm).entries()) {
+      params.append(k, v);
     }
-    console.log('Commercial Booking:', data);
-    alert('Thank you for your quote request!\n\nOur commercial team will review your details and contact you within 24 hours with a customised quote.\n\nYou will receive a confirmation via WhatsApp and email shortly.');
-    comForm.reset();
-    hideAllComInfo();
-    comShowStep(1);
+    params.append('submittedAt', new Date().toLocaleString('en-ZA'));
+
+    const btn = comForm.querySelector('[type="submit"]');
+    const origHTML = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'; }
+
+    fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+      .then(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('✅ Quote request submitted!\n\nOur commercial team will review your details and contact you within 24 hours with a customised quote. A confirmation will be sent to your email.');
+        comForm.reset();
+        hideAllComInfo();
+        comShowStep(1);
+      })
+      .catch(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('Unable to submit. Please try again or WhatsApp us directly: 072 924 9068');
+      });
   });
 
   comShowStep(1);
@@ -467,78 +434,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Conditional Logic: Deep Cleaning Info Box
+  // Conditional Logic: Service selector
   const serviceSelect = document.getElementById('res-service');
-  const deepCleaningInfo = document.getElementById('deep-cleaning-info');
-  const fullTimePlacementChoice = document.getElementById('full-time-placement-choice');
-  const regularCleaningStep4 = document.getElementById('regular-cleaning-step4');
-  const fulltimeFairyStep4 = document.getElementById('fulltime-fairy-step4');
-  
+
   if (serviceSelect) {
     serviceSelect.addEventListener('change', () => {
-      // Deep Cleaning Info Box
-      if (deepCleaningInfo) {
-        if (serviceSelect.value === 'deep-cleaning') {
-          deepCleaningInfo.style.display = 'block';
-          deepCleaningInfo.style.animation = 'fadeInUp 0.5s ease';
-        } else {
-          deepCleaningInfo.style.display = 'none';
-        }
+      const val = serviceSelect.value;
+
+      // ---- Deep Cleaning page info boxes ----
+      const showOnly = (id) => {
+        ['deep-cleaning-info','carpet-cleaning-info','pest-control-info','post-construction-info'].forEach(boxId => {
+          const el = document.getElementById(boxId);
+          if (el) el.style.display = (boxId === id) ? 'block' : 'none';
+        });
+      };
+      if (document.getElementById('deep-cleaning-info') && !document.getElementById('maid-onceoff-info')) {
+        // We are on cleaning.html (deep cleaning page)
+        showOnly(val === 'deep-cleaning'      ? 'deep-cleaning-info'    :
+                 val === 'carpet-cleaning'    ? 'carpet-cleaning-info'  :
+                 val === 'pest-control'       ? 'pest-control-info'     :
+                 val === 'post-construction'  ? 'post-construction-info': null);
       }
 
-      // Full-Time Fairy Placement Choice
-      if (fullTimePlacementChoice) {
-        if (serviceSelect.value === 'full-time') {
-          fullTimePlacementChoice.style.display = 'block';
-          fullTimePlacementChoice.style.animation = 'fadeInUp 0.5s ease';
-        } else {
-          fullTimePlacementChoice.style.display = 'none';
-        }
-      }
-
-      // Maid service info boxes
-      const onceoffInfo   = document.getElementById('maid-onceoff-info');
-      const recurringInfo = document.getElementById('maid-recurring-info');
+      // ---- Maid page info boxes ----
+      const onceoffInfo     = document.getElementById('maid-onceoff-info');
+      const recurringInfo   = document.getElementById('maid-recurring-info');
       const transportNotice = document.getElementById('maid-transport-notice');
       const transportField  = document.getElementById('maid-transport-field');
       const serviceDays     = document.getElementById('maid-service-days');
+      const fullTimePlacementEl = document.getElementById('full-time-placement-choice');
+      const fulltimeFairyStep4El = document.getElementById('fulltime-fairy-step4');
+      const regularStep4El  = document.getElementById('regular-cleaning-step4');
 
-      const onceoffServices  = ['maid-once-off', 'maid-biweekly'];
+      const onceoffServices   = ['maid-once-off', 'maid-biweekly'];
       const recurringServices = ['maid-weekly', 'maid-twice'];
-      const allMaidServices  = [...onceoffServices, ...recurringServices, 'full-time'];
-      const val = serviceSelect.value;
+      const allMaidServices   = [...onceoffServices, ...recurringServices, 'full-time'];
 
-      if (onceoffInfo)    onceoffInfo.style.display   = onceoffServices.includes(val)  ? 'block' : 'none';
-      if (recurringInfo)  recurringInfo.style.display  = recurringServices.includes(val) ? 'block' : 'none';
-      if (transportNotice) transportNotice.style.display = allMaidServices.includes(val) ? 'flex'  : 'none';
-      if (transportField)  transportField.style.display  = allMaidServices.includes(val) ? 'block' : 'none';
-      if (serviceDays)     serviceDays.style.display     = recurringServices.includes(val) ? 'block' : 'none';
+      if (onceoffInfo)      onceoffInfo.style.display      = onceoffServices.includes(val)   ? 'block' : 'none';
+      if (recurringInfo)    recurringInfo.style.display    = recurringServices.includes(val)  ? 'block' : 'none';
+      if (transportNotice)  transportNotice.style.display  = allMaidServices.includes(val)   ? 'flex'  : 'none';
+      if (transportField)   transportField.style.display   = allMaidServices.includes(val)   ? 'block' : 'none';
+      if (serviceDays)      serviceDays.style.display      = recurringServices.includes(val) || val === 'maid-once-off' || val === 'maid-biweekly' ? 'block' : 'none';
 
-      // Toggle Step 4 content based on service type
-      if (regularCleaningStep4 && fulltimeFairyStep4) {
-        if (serviceSelect.value === 'full-time') {
-          regularCleaningStep4.style.display = 'none';
-          fulltimeFairyStep4.style.display = 'block';
-          // Remove required from regular cleaning fields
-          document.querySelectorAll('#regular-cleaning-step4 input[required], #regular-cleaning-step4 select[required]').forEach(field => {
-            field.removeAttribute('required');
-          });
-          // Add required to full-time fairy fields
-          document.querySelectorAll('#fulltime-fairy-step4 textarea, #fulltime-fairy-step4 input').forEach(field => {
-            field.setAttribute('required', 'required');
-          });
+      if (fullTimePlacementEl) {
+        fullTimePlacementEl.style.display = val === 'full-time' ? 'block' : 'none';
+      }
+
+      // Toggle Step 4 sections on maid page
+      if (regularStep4El && fulltimeFairyStep4El) {
+        if (val === 'full-time') {
+          regularStep4El.style.display   = 'none';
+          fulltimeFairyStep4El.style.display = 'block';
+          document.querySelectorAll('#regular-cleaning-step4 input[required], #regular-cleaning-step4 select[required]').forEach(f => f.removeAttribute('required'));
+          document.querySelectorAll('#fulltime-fairy-step4 textarea, #fulltime-fairy-step4 input').forEach(f => f.setAttribute('required', 'required'));
         } else {
-          regularCleaningStep4.style.display = 'block';
-          fulltimeFairyStep4.style.display = 'none';
-          // Add required back to regular cleaning fields
-          const resCondition = document.getElementById('res-condition');
-          const resPestControl = document.getElementById('res-pest-control');
-          if (resCondition) resCondition.setAttribute('required', 'required');
-          if (resPestControl) resPestControl.setAttribute('required', 'required');
-          // Remove required from full-time fairy fields
-          document.querySelectorAll('#fulltime-fairy-step4 textarea, #fulltime-fairy-step4 input').forEach(field => {
-            field.removeAttribute('required');
-          });
+          regularStep4El.style.display   = 'block';
+          fulltimeFairyStep4El.style.display = 'none';
+          const resCondition   = document.getElementById('res-condition');
+          if (resCondition)   resCondition.setAttribute('required', 'required');
+          document.querySelectorAll('#fulltime-fairy-step4 textarea, #fulltime-fairy-step4 input').forEach(f => f.removeAttribute('required'));
         }
       }
     });
@@ -606,51 +560,99 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Form submission
+  // Form submission — sends to Google Sheets + email
   smartForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Validate last step
     if (!validateStep(totalSteps)) {
       alert('Please complete all required fields and agree to the terms.');
       return;
     }
 
-    // Collect all form data
-    const formData = new FormData(smartForm);
-    const data = {};
-
-    // Convert to object, handling multiple checkboxes
-    for (let [key, value] of formData.entries()) {
-      if (key === 'pest-types') {
-        if (!data[key]) data[key] = [];
-        data[key].push(value);
-      } else {
-        data[key] = value;
-      }
+    const params = new URLSearchParams();
+    params.append('formType', smartForm.dataset.formType || 'residential');
+    for (const [key, value] of new FormData(smartForm).entries()) {
+      params.append(key, value);
     }
+    params.append('submittedAt', new Date().toLocaleString('en-ZA'));
 
-    console.log('Smart Booking Form Data:', data);
+    const btn = smartForm.querySelector('[type="submit"]');
+    const origHTML = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'; }
 
-    // Show success message
-    alert('🎉 Thank you for your detailed booking request!\n\nOur Sethakga team will review your information and contact you within 24 hours to confirm your appointment and provide your quotation.\n\nYou will receive a confirmation via WhatsApp and email shortly.');
-
-    // Reset form and go back to step 1
-    smartForm.reset();
-    showStep(1);
-
-    // In production: Send to backend
-    // fetch('/api/bookings/smart', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // }).then(response => response.json()).then(result => {
-    //   console.log('Success:', result);
-    // });
+    fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+      .then(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('🎉 Booking request submitted!\n\nOur Sethakga team will contact you within 24 hours to confirm your appointment and provide your quote. A confirmation will be sent to your email.');
+        smartForm.reset();
+        showStep(1);
+      })
+      .catch(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('Unable to submit. Please try again or WhatsApp us directly: 072 924 9068');
+      });
   });
 
   // Initialize
   showStep(1);
+});
+
+/* ====================================================
+   HAIR PAGE — Service Info Boxes + Event Type Toggle
+   ==================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const hairService = document.getElementById('hair-service');
+  if (!hairService) return;
+
+  const hairInfoIds = [
+    'box-braids-info', 'cornrows-info', 'twists-info', 'passion-twists-info',
+    'weave-info', 'wig-install-info', 'closure-frontal-info',
+    'natural-hair-info', 'childrens-braids-info', 'weave-maintenance-info'
+  ];
+
+  const twistServices = ['senegalese-twists', 'havana-twists', 'marley-twists'];
+
+  const serviceInfoMap = {
+    'box-braids'        : 'box-braids-info',
+    'cornrows'          : 'cornrows-info',
+    'senegalese-twists' : 'twists-info',
+    'havana-twists'     : 'twists-info',
+    'marley-twists'     : 'twists-info',
+    'passion-twists'    : 'passion-twists-info',
+    'childrens-braids'  : 'childrens-braids-info',
+    'weave-install'     : 'weave-info',
+    'wig-install'       : 'wig-install-info',
+    'closure-frontal'   : 'closure-frontal-info',
+    'weave-maintenance' : 'weave-maintenance-info',
+    'natural-wash'      : 'natural-hair-info',
+    'natural-styling'   : 'natural-hair-info',
+    'hair-treatment'    : 'natural-hair-info',
+  };
+
+  hairService.addEventListener('change', () => {
+    const val = hairService.value;
+    // Hide all info boxes
+    hairInfoIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    // Show matching info box
+    const targetId = serviceInfoMap[val];
+    if (targetId) {
+      const el = document.getElementById(targetId);
+      if (el) { el.style.display = 'block'; el.style.animation = 'fadeInUp 0.4s ease'; }
+    }
+  });
+
+  // Event type → show/hide guest count field
+  document.querySelectorAll('input[name="appointment-type"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const guestsGroup = document.getElementById('event-guests-group');
+      if (guestsGroup) {
+        guestsGroup.style.display = radio.value === 'event' && radio.checked ? 'block' : 'none';
+      }
+    });
+  });
 });
 
 /* ====================================================
@@ -711,37 +713,124 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const friendArea    = referralForm.querySelector('#ref-friend-area').value.trim();
-    const serviceInterest = referralForm.querySelector('#ref-service').value;
-    const message       = referralForm.querySelector('#ref-message').value.trim();
+    const params = new URLSearchParams();
+    params.append('formType', 'referral');
+    for (const [key, value] of new FormData(referralForm).entries()) {
+      params.append(key, value);
+    }
+    params.append('submittedAt', new Date().toLocaleString('en-ZA'));
 
-    const serviceLabels = {
-      'maid-regular':  'Regular Maid / Domestic Worker',
-      'maid-onceoff':  'Once-Off / Deep Cleaning',
-      'carpet':        'Carpet & Upholstery Cleaning',
-      'pest':          'Pest Control',
-      'commercial':    'Commercial / Office Cleaning',
-      'hair-braiding': 'Hair Braiding (Sethakga HAIR)',
-      'not-sure':      'Not sure yet',
-      '':              'Not specified'
-    };
+    const btn = referralForm.querySelector('[type="submit"]');
+    const origHTML = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'; }
 
-    const waText = encodeURIComponent(
-      `Hi Sethakga! I'd like to refer a friend 🌟\n\n` +
-      `MY DETAILS\nName: ${yourName}\nPhone: ${yourPhone}\n\n` +
-      `FRIEND'S DETAILS\nName: ${friendName}\nPhone: ${friendPhone}` +
-      (friendArea ? `\nArea: ${friendArea}` : '') +
-      (serviceInterest ? `\nInterested in: ${serviceLabels[serviceInterest] || serviceInterest}` : '') +
-      (message ? `\n\nExtra info: ${message}` : '') +
-      `\n\nPlease apply my referral reward to my next booking. Thank you!`
-    );
-
-    const waUrl = `https://wa.me/27729249068?text=${waText}`;
-
-    // Provide confirmation and open WhatsApp
-    alert(`Thank you, ${yourName}! We'll reach out to ${friendName} and apply your reward once they complete their first booking. Opening WhatsApp now...`);
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
-    referralForm.reset();
+    fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+      .then(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert(`Thank you, ${yourName}! 🌟 Your referral has been submitted. We'll reach out to ${friendName} and apply your reward once they complete their first booking.`);
+        referralForm.reset();
+      })
+      .catch(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('Unable to submit. Please try again or WhatsApp us directly: 072 924 9068');
+      });
   });
 
 });
+
+/* ============================================================
+   CONTACT PAGE — Form submission → Google Sheets + email
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const contactFormEl = document.getElementById('contactForm');
+  if (!contactFormEl) return;
+
+  contactFormEl.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name    = document.getElementById('contact-name').value.trim();
+    const phone   = document.getElementById('contact-phone').value.trim();
+    const email   = document.getElementById('contact-email').value.trim();
+    const service = document.getElementById('contact-service').value;
+    const area    = document.getElementById('contact-area').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+
+    if (!name || !phone || !service) {
+      alert('Please fill in your name, phone number, and the service you need.');
+      return;
+    }
+
+    const params = new URLSearchParams();
+    params.append('formType', 'contact');
+    params.append('name', name);
+    params.append('phone', phone);
+    params.append('email', email);
+    params.append('service', service);
+    params.append('area', area);
+    params.append('message', message);
+    params.append('submittedAt', new Date().toLocaleString('en-ZA'));
+
+    const btn = contactFormEl.querySelector('[type="submit"]');
+    const origHTML = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; }
+
+    fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+      .then(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('✅ Enquiry submitted! We will be in touch within 24 hours.');
+        contactFormEl.reset();
+      })
+      .catch(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+        alert('Unable to submit. Please try again or WhatsApp us directly: 072 924 9068');
+      });
+  });
+
+  // ── Academy application form ────────────────────────────
+  const academyFormEl = document.getElementById('academyForm');
+  if (academyFormEl) {
+    academyFormEl.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const params = new URLSearchParams(new FormData(academyFormEl));
+      params.set('formType', 'academy');
+      params.set('submittedAt', new Date().toLocaleString('en-ZA'));
+      const btn = academyFormEl.querySelector('[type="submit"]');
+      const origHTML = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'; }
+      fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+        .then(() => {
+          if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+          alert('✅ Application submitted! We will review it and contact you within 5 working days.');
+          academyFormEl.reset();
+        })
+        .catch(() => {
+          if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+          alert('Unable to submit. Please WhatsApp us: 072 924 9068');
+        });
+    });
+  }
+
+  // ── Thushanang support request form ─────────────────────
+  const thushanangFormEl = document.getElementById('thushanangForm');
+  if (thushanangFormEl) {
+    thushanangFormEl.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const params = new URLSearchParams(new FormData(thushanangFormEl));
+      params.set('formType', 'thushanang');
+      params.set('submittedAt', new Date().toLocaleString('en-ZA'));
+      const btn = thushanangFormEl.querySelector('[type="submit"]');
+      const origHTML = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...'; }
+      fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params })
+        .then(() => {
+          if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+          alert('✅ Support request received. Our Thushanang team will contact you within 5 working days.');
+          thushanangFormEl.reset();
+        })
+        .catch(() => {
+          if (btn) { btn.disabled = false; btn.innerHTML = origHTML; }
+          alert('Unable to submit. Please WhatsApp us: 072 924 9068');
+        });
+    });
+  }
+

@@ -2875,21 +2875,9 @@ footer {
    FADE-IN ANIMATIONS
 ============================================================ */
 .fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-
-.fade-up.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
-
-.fade-up:nth-child(2) { transition-delay: 0.10s; }
-.fade-up:nth-child(3) { transition-delay: 0.20s; }
-.fade-up:nth-child(4) { transition-delay: 0.30s; }
-.fade-up:nth-child(5) { transition-delay: 0.40s; }
-.fade-up:nth-child(6) { transition-delay: 0.50s; }
 
 /* ============================================================
    SUCCESS MESSAGE
